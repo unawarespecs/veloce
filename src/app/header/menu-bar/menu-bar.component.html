@@ -6,9 +6,9 @@
         <a href="#about">About</a>
     </div>
     <div class="desktop-actions">
-        <a href="/sign-in">Sign In</a>
-        <a href="/cart">Cart</a>
+        <a class="button button-secondary" href="/cart">Cart</a>
         <a class="button button-primary" href="#booking">Book Now</a>
+        <a class="button button-primary" href="/sign-in">Sign In</a>
     </div>
     <button class="menu-toggle" type="button" (click)="menuOpen.update((open) => !open)" [attr.aria-expanded]="menuOpen()" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -20,6 +20,8 @@
         <a href="#locations" (click)="closeMenu()">Locations</a>
         <a href="#services" (click)="closeMenu()">Services</a>
         <a href="#about" (click)="closeMenu()">About</a>
+        <a class="button button-secondary" href="/cart" (click)="closeMenu()">Cart</a>
         <a class="button button-primary" href="#booking" (click)="closeMenu()">Book Now <app-arrow-right /></a>
+        <a class="button button-primary" href="/sign-in" (click)="closeMenu()">Sign In<app-arrow-right /></a>
     </div>
 }
