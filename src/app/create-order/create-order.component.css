@@ -1,0 +1,8 @@
+.order-form { margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--border); }
+.order-form h2 { margin-bottom: 24px; font-size: 32px; }
+.order-form form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.order-form label { color: var(--muted-foreground); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.order-form input { display: block; width: 100%; margin-top: 8px; padding: 12px; border: 1px solid var(--border); color: var(--foreground); background: var(--background); }
+.order-form button { grid-column: 1 / -1; padding: 14px; border: 0; color: var(--primary-foreground); background: var(--primary); font: 600 12px 'Barlow Condensed', sans-serif; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; }
+.order-success { padding: 14px; color: var(--primary); border: 1px solid var(--primary); }
+@media (max-width: 560px) { .order-form form { grid-template-columns: 1fr; } .order-form button { grid-column: auto; } }

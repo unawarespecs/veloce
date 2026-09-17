@@ -1,0 +1,15 @@
+ :host { display: block; }
+.site-header { position: fixed; inset: 0 0 auto; z-index: 50; display: flex; align-items: center; justify-content: space-between; min-height: 64px; padding: 0 24px; border-bottom: 1px solid var(--border); background: rgb(10 10 10 / 92%); backdrop-filter: blur(12px); }
+.brand { display: flex; align-items: baseline; gap: 8px; color: var(--primary); text-decoration: none; }
+.brand span { font: 700 28px/1 'Barlow Condensed', sans-serif; letter-spacing: .18em; }
+.brand small { color: var(--foreground); font-size: 10px; letter-spacing: .3em; opacity: .5; }
+table {
+    color: red;
+    background-color: blue;
+    text-align: center;
+}
+
+#menu {
+    height:  100 ;
+    width :  100;
+}

@@ -1,0 +1,141 @@
+<main>
+  <section class="hero" id="hero">
+    <img class="hero-image"
+         src="https://images.unsplash.com/photo-1585725657613-b0030aaabccc?w=1600&h=1000&fit=crop&auto=format"
+         alt="Metro Manila skyline" />
+    <div class="hero-overlay"></div>
+    <div class="section-wrap hero-content">
+      <div class="hero-copy">
+        <p class="eyebrow">Premium Car Rental - Metro Manila, Philippines</p>
+        <h1>Drive<br /><span>Without</span><br />Limits</h1>
+        <p class="hero-description">Curated fleet of premium cars, trucks, and vans. Serving Metro Manila - with more
+          locations coming soon.</p>
+      </div>
+      <div class="booking-strip" id="booking">
+        <label>Location
+          <span class="select-wrap"><select [value]="location()" (change)="location.set($any($event.target).value)">
+                        @for (locationOption of locations; track locationOption.city) {
+                          @if (locationOption.available) {
+                            <option
+                              [value]="locationOption.city + ' - ' + locationOption.airport">{{ locationOption.city }}
+                              - {{ locationOption.airport }}</option>
+                          }
+                        }
+                    </select><app-chevron-down /></span>
+        </label>
+        <label>Pick-up Date<input type="date" [value]="pickupDate()"
+                                  (input)="pickupDate.set($any($event.target).value)" /></label>
+        <label>Return Date<input type="date" [value]="returnDate()"
+                                 (input)="returnDate.set($any($event.target).value)" /></label>
+        <button class="button button-primary search-button" type="button" (click)="searchFleet()">Search Fleet
+          <app-arrow-right />
+        </button>
+      </div>
+      @if (bookingMessage()) {
+        <p class="booking-message" aria-live="polite">{{ bookingMessage() }}</p>
+      }
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="section-wrap stats-grid">
+      @for (stat of [{ value: '150+', label: 'Vehicles in Fleet' }, {
+        value: 'Metro Manila',
+        label: 'Primary Location'
+      }, { value: '98%', label: 'Satisfaction Rate' }, {
+        value: '10yr',
+        label: 'Industry Experience'
+      }]; track stat.label) {
+        <div class="stat"><strong>{{ stat.value }}</strong><span>{{ stat.label }}</span></div>
+      }
+    </div>
+  </section>
+
+  <app-product-list />
+
+  <section class="band" id="services">
+    <div class="section-wrap">
+      <p class="eyebrow">Process</p>
+      <h2>How It Works</h2>
+      <div class="steps">@for (step of [{
+        num: '01',
+        title: 'Choose Your Vehicle',
+        desc: 'Browse our curated fleet of 240+ premium and exotic cars. Filter by category, location, or availability.'
+      }, {
+        num: '02',
+        title: 'Select Dates & Location',
+        desc: 'Pick your pickup and return dates. Choose from our Metro Manila hubs, including NAIA terminals and key city districts.'
+      }, {
+        num: '03',
+        title: 'Confirm & Drive',
+        desc: 'Secure checkout, instant confirmation, and white-glove vehicle handoff at your chosen location.'
+      }]; track step.num) {
+        <article class="step"><strong>{{ step.num }}</strong>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.desc }}</p></article>
+      }</div>
+    </div>
+  </section>
+
+  <section class="locations band" id="locations">
+    <div class="section-wrap">
+      <div class="section-heading">
+        <div><p class="eyebrow">Where We Are</p>
+          <h2>Locations</h2></div>
+        <p>Currently serving Metro Manila. Expanding to Cebu and Davao - coming soon.</p></div>
+      <div class="location-grid">@for (location of locations; track location.city) {
+        <article class="location" [class.unavailable]="!location.available">
+          <div class="location-title">
+            <div><h3>{{ location.city }}</h3><span>{{ location.airport }}</span></div>@if (location.available) {
+            <app-arrow-right />
+          } @else {
+            <small>Soon</small>
+          }</div>
+          <span
+            class="location-count">{{ location.available ? location.count + ' Vehicles Available' : 'Coming Soon' }}</span>
+        </article>
+      }</div>
+    </div>
+  </section>
+
+  <section class="experience" id="about">
+    <div class="experience-image"><img
+      src="https://images.unsplash.com/photo-1533630217389-3a5e4dff5683?w=800&h=600&fit=crop&auto=format"
+      alt="Luxury car interior" /></div>
+    <div class="experience-copy"><p class="eyebrow">White Glove Service</p>
+      <h2>The Veloce<br />Experience</h2>
+      <p>From the moment you book to the moment you return the keys, every touchpoint is handled with precision and
+        discretion. Our concierge team is available
+        24/7.</p>@for (service of ['Complimentary NAIA terminal delivery', 'Dedicated concierge support', 'Full insurance coverage', 'Flexible cancellation policy']; track service) {
+        <span class="service-item"><i></i>{{ service }}</span>
+      }
+      <button class="button button-primary">Learn More
+        <app-arrow-right />
+      </button>
+    </div>
+  </section>
+
+  <section class="band testimonials">
+    <div class="section-wrap"><p class="eyebrow">Client Stories</p>
+      <h2>Testimonials</h2>
+      <div class="testimonial-grid">@for (testimonial of testimonials; let i = $index; track testimonial.name) {
+        <article class="testimonial" [class.active]="activeTestimonial() === i" (click)="setTestimonial(i)">
+          <div class="stars">@for (star of [1, 2, 3, 4, 5]; track star) {
+            <app-star-icon />
+          }</div>
+          <blockquote>"{{ testimonial.quote }}"</blockquote>
+          <strong>{{ testimonial.name }}</strong><span>{{ testimonial.title }}</span></article>
+      }</div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="section-wrap cta-content">
+      <div><h2>Ready to Drive?</h2>
+        <p>Join 12,000+ drivers across Metro Manila who choose Veloce.</p></div>
+      <a class="button cta-button" href="#fleet">Browse the Fleet
+        <app-arrow-right />
+      </a></div>
+  </section>
+  <app-footer />
+</main>

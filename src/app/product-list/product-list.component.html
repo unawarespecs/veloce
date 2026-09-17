@@ -1,0 +1,28 @@
+<section class="fleet section-wrap" id="fleet">
+    <div class="fleet-heading">
+        <div>
+            <p class="eyebrow">Our Collection</p>
+            <h2>The Fleet</h2>
+        </div>
+        <div class="categories">@for (category of categories; track category) { <button type="button"
+                [class.active]="activeCategory() === category" (click)="selectCategory(category)">{{ category
+                }}</button> }</div>
+    </div>
+    <div class="fleet-grid">@for (vehicle of filteredFleet(); track vehicle.id) { <article class="vehicle"
+            (mouseenter)="hoveredId.set(vehicle.id)" (mouseleave)="hoveredId.set(null)">@if (vehicle.tag) { <span
+                class="vehicle-tag">{{ vehicle.tag }}</span> }<div class="vehicle-image"><img [src]="vehicle.image"
+                    [alt]="vehicle.name" /></div>
+            <div class="vehicle-content">
+                <div class="vehicle-title">
+                    <div><span>{{ vehicle.category }}</span>
+                        <h3>{{ vehicle.name }}</h3>
+                    </div><strong>₱{{ vehicle.price | number }}<small>/day</small></strong>
+                </div>
+                <div class="vehicle-specs"><span>{{ vehicle.seats }} Seats</span><i>|</i><span>{{ vehicle.transmission
+                        }}</span><i>|</i><span>{{ vehicle.fuel }}</span></div><button type="button" class="reserve"
+                    [class.highlighted]="hoveredId() === vehicle.id" (click)="reserve(vehicle)">Reserve Now
+                    <app-arrow-right [size]="14" /></button>
+            </div>
+        </article> }</div>
+    <div class="fleet-more"><a href="#booking">View All 150+ Vehicles <app-arrow-right /></a></div>
+</section>
