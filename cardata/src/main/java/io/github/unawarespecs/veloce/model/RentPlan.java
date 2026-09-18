@@ -10,6 +10,6 @@ public class RentPlan {
     private Integer vehicleID;
     private Date startRent;
     private Date endRent;
-    @Deprecated(forRemoval = true)
+    // Source of truth for vehicle daily rent rate. Sync this value to the Vehicle dailyRate field
     private Double rate;
 }

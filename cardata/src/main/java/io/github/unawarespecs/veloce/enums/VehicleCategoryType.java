@@ -1,6 +1,6 @@
 package io.github.unawarespecs.veloce.enums;
 
-public enum VehicleCategory {
+public enum VehicleCategoryType {
     Sedan,
     Van,
     SUV,

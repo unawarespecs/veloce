@@ -2,23 +2,23 @@ package io.github.unawarespecs.veloce.controller;
 
 import io.github.unawarespecs.veloce.model.Vehicle;
 import io.github.unawarespecs.veloce.service.VehicleService;
-import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@NoArgsConstructor
 @RequestMapping("/api/vehicle")
 public class VehicleController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private VehicleService vehicleService;
+    private final VehicleService vehicleService;
+
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<?> listVehicles() {

@@ -7,7 +7,6 @@ import io.github.unawarespecs.veloce.service.RenterService;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,8 +17,11 @@ import java.util.Optional;
 public class RenterServiceImpl implements RenterService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     RenterDataRepository rdr;
+
+    public RenterServiceImpl(RenterDataRepository rdr) {
+        this.rdr = rdr;
+    }
 
     @Override
     public Renter[] getRenters() throws Exception {

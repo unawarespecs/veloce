@@ -4,23 +4,28 @@
     gap: 32px;
 }
 
-.desktop-links, .desktop-actions {
+.desktop-links,
+.desktop-actions {
     display: flex;
     align-items: center;
     gap: 28px;
 }
 
-.desktop-links a, .desktop-actions a, .mobile-links a {
+.desktop-links a,
+.desktop-actions a,
+.mobile-links a {
     color: var(--foreground);
     font-size: 12px;
-    letter-spacing: .14em;
+    letter-spacing: 0.14em;
     text-decoration: none;
     text-transform: uppercase;
-    opacity: .65;
-    transition: opacity .2s;
+    opacity: 0.65;
+    transition: opacity 0.2s;
 }
 
-.desktop-links a:hover, .desktop-actions a:hover, .mobile-links a:hover {
+.desktop-links a:hover,
+.desktop-actions a:hover,
+.mobile-links a:hover {
     opacity: 1;
 }
 
@@ -35,8 +40,10 @@
     gap: 10px;
     padding: 12px 20px;
     opacity: 1 !important;
-    font: 600 12px/1 'Barlow Condensed', sans-serif !important;
-    letter-spacing: .15em !important;
+    font:
+        600 12px/1 'Barlow Condensed',
+        sans-serif !important;
+    letter-spacing: 0.15em !important;
 }
 
 .button-primary {
@@ -86,7 +93,8 @@
         padding: 0 18px;
     }
 
-    .desktop-links, .desktop-actions {
+    .desktop-links,
+    .desktop-actions {
         display: none;
     }
 
@@ -112,7 +120,7 @@
 
 #home_page {
     border-radius: 10px;
-    background-color: #73AD21;
+    background-color: #73ad21;
     padding: 5px;
     width: 50px;
     height: 15px;

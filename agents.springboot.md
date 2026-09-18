@@ -22,7 +22,8 @@ Always execute or verify code changes using these commands:
 
 This is a Maven multi-module project (root `pom.xml`) with two modules:
 
-- JPA entities, base models, data repositories, services, and other classes live in the `cardata` module. This module includes `spring-boot-starter-data-jpa`, `jakarta.persistence-api`, `mysql-connector-j`, and Jackson annotations.
+- JPA entities, base models, data repositories, services, and other classes live in the `cardata` module.
+
 - Spring controllers and service implementations live in the `sbrentms` module. This module depends on `cardata` and adds Spring Web, Data JPA, Actuator, MySQL runtime support, and testing dependencies.
 
 Treat `cardata` as the data-layer contract. Avoid mixing UI/API concerns into JPA models.
@@ -31,13 +32,18 @@ Ensure dependencies flow in one direction: `Controller -> Service -> Repository`
 
 ### Java packages
 
-- `io.github.unawarespecs.veloce.controller` (REST Endpoints, HTTP Mapping, Validations)
-- `io.github.unawarespecs.veloce.service` (Business Logic Interfaces)
-- `io.github.unawarespecs.veloce.serviceimpl` (Business Logic Implementations)
+#### cardata
+
 - `io.github.unawarespecs.veloce.repository` (Spring Data Repositories)
 - `io.github.unawarespecs.veloce.entity` (Database Entities)
 - `io.github.unawarespecs.veloce.model` (Base models)
 - `io.github.unawarespecs.veloce.enums` (Enums for base models)
+- `io.github.unawarespecs.veloce.service` (Business Logic Interfaces)
+
+#### sbrentms
+
+- `io.github.unawarespecs.veloce.controller` (REST Endpoints, HTTP Mapping, Validations)
+- `io.github.unawarespecs.veloce.serviceimpl` (Business Logic Implementations)
 
 ## Java & Spring conventions
 
@@ -61,9 +67,8 @@ Ensure dependencies flow in one direction: `Controller -> Service -> Repository`
 The base model structure should look similar to this:
 
 ```java
-
 @Data
-public class Entity {
+public class ExampleEntity {
     private int id;
 
     // fields go here
@@ -75,12 +80,12 @@ The JPA entity structure should look similar to this:
 ```java
 // Lombok annotations go here (@Getter/@Setter, @ToString, etc.)
 @Entity
-@Table(name = "entities")
-public class EntityData {
+@Table(name = "example_entities") // Use snake_case for table naming.
+public class ExampleEntityData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    Integer id;
+    private Integer id;
 
     // fields from the base model
 
@@ -97,9 +102,23 @@ public class EntityData {
 Additionally, create a data repository class as well, extending the Spring Data `CrudRepository` class (`org.springframework.data.repository.CrudRepository`):
 
 ```java
-public interface EntityDataRepository extends CrudRepository<EntityData, Integer> {
+public interface ExampleEntityDataRepository extends CrudRepository<EntityData, Integer> {
 }
 ```
+
+Lastly, create a service interface for CRUD operations.
+
+```java
+public interface ExampleEntityService {
+    ExampleEntity[] getExampleEntities() throws Exception;
+    ExampleEntity getExampleEntity(Integer id) throws Exception;
+    ExampleEntity addExampleEntity(ExampleEntity entity) throws Exception;
+    ExampleEntity updateExampleEntity(ExampleEntity entity) throws Exception;
+    void delete(Integer id) throws Exception;
+}
+```
+
+To summarize, creation of a new entity class starts with making a `base model` -> `JPA entity` -> `data repository` -> `service interface`.
 
 ## Quick do/don't checklist for agents
 
@@ -110,6 +129,6 @@ public interface EntityDataRepository extends CrudRepository<EntityData, Integer
 
 ## Helpful references
 
-- Project overview: [README.md](../README.md)
+- Project overview: [README.md](README.md)
 
-When working in this repo, keep change scope small, follow existing Java and Spring conventions, and prefer direct reuse of the established storefront patterns over introducing new abstractions.
+When working in this repo, keep the change scope small, follow existing Java and Spring conventions, and prefer direct reuse of the established storefront patterns over introducing new abstractions.

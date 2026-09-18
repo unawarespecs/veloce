@@ -2,21 +2,21 @@ package io.github.unawarespecs.veloce.controller;
 
 import io.github.unawarespecs.veloce.model.Renter;
 import io.github.unawarespecs.veloce.service.RenterService;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@NoArgsConstructor
 @RequestMapping("/api/renter")
 public class RenterController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     private RenterService renterService;
+
+    public RenterController(RenterService renterService) {
+        this.renterService = renterService;
+    }
 
     @GetMapping("/")
     public ResponseEntity<?> listRentPlans() {

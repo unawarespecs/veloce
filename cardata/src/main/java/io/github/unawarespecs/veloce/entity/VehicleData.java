@@ -1,6 +1,6 @@
 package io.github.unawarespecs.veloce.entity;
 
-import io.github.unawarespecs.veloce.enums.VehicleCategory;
+import io.github.unawarespecs.veloce.enums.VehicleCategoryType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.unawarespecs.veloce.enums.VehicleFuelType;
 import io.github.unawarespecs.veloce.enums.VehicleTransmissionType;
@@ -27,12 +27,13 @@ public class VehicleData {
 
     String brand;
     String model;
-    String name;
     @Column(nullable = false, scale = 2)
     double price;
-    double dailyRate;
-    VehicleCategory type;
 
+    String name;
+    VehicleCategoryType category;
+    @Column(nullable = false, scale = 2)
+    double dailyRate;
     int seats;
     VehicleTransmissionType transmission;
     VehicleFuelType fuel;

@@ -1,23 +1,28 @@
 <footer class="site-footer">
-  <div class="section-wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">VELOCE</div>
-        <p>Premium car rental. 150+ vehicles across Metro Manila. Est. 2016.</p></div>@for (column of [{
-      heading: 'Fleet',
-      links: ['Sports Cars', 'Luxury Sedans', 'SUVs', 'Grand Tourers', 'Ultra Luxury']
-    }, {
-      heading: 'Company',
-      links: ['About Us', 'Careers', 'Press', 'Partner With Us', 'Contact']
-    }, {
-      heading: 'Support',
-      links: ['Book a Car', 'Manage Reservation', 'Insurance', 'FAQ', '24/7 Concierge']
-    }]; track column.heading) {
-      <div><h3>{{ column.heading }}</h3>@for (link of column.links; track link) {
-        <a href="#">{{ link }}</a>
-      }</div>
-    }</div>
-    <div class="footer-bottom"><span>© 2026 Veloce Auto Philippines. All rights reserved.</span><span>Privacy Policy&nbsp;&nbsp;&nbsp; Terms of Service&nbsp;&nbsp;&nbsp; Cookie Policy</span>
+    <div class="section-wrap">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">VELOCE</div>
+                <p>Premium car rental. 150+ vehicles across Metro Manila. Est. 2016.</p>
+            </div>@for (column of [{
+            heading: 'Fleet',
+            links: ['Sports Cars', 'Luxury Sedans', 'SUVs', 'Grand Tourers', 'Ultra Luxury']
+            }, {
+            heading: 'Company',
+            links: ['About Us', 'Careers', 'Press', 'Partner With Us', 'Contact']
+            }, {
+            heading: 'Support',
+            links: ['Book a Car', 'Manage Reservation', 'Insurance', 'FAQ', '24/7 Concierge']
+            }]; track column.heading) {
+            <div>
+                <h3>{{ column.heading }}</h3>@for (link of column.links; track link) {
+                <a href="#">{{ link }}</a>
+                }
+            </div>
+            }
+        </div>
+        <div class="footer-bottom"><span>© 2026 Veloce Auto Philippines. All rights reserved.</span><span>Privacy
+                Policy&nbsp;&nbsp;&nbsp; Terms of Service&nbsp;&nbsp;&nbsp; Cookie Policy</span>
+        </div>
     </div>
-  </div>
 </footer>

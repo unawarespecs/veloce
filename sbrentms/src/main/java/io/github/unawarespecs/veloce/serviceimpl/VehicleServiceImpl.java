@@ -1,14 +1,13 @@
 package io.github.unawarespecs.veloce.serviceimpl;
 
 import io.github.unawarespecs.veloce.entity.VehicleData;
-import io.github.unawarespecs.veloce.enums.VehicleCategory;
+import io.github.unawarespecs.veloce.enums.VehicleCategoryType;
 import io.github.unawarespecs.veloce.model.Vehicle;
 import io.github.unawarespecs.veloce.repository.VehicleDataRepository;
 import io.github.unawarespecs.veloce.service.VehicleService;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,8 +18,11 @@ import java.util.Optional;
 public class VehicleServiceImpl implements VehicleService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     VehicleDataRepository vdr;
+
+    public VehicleServiceImpl(VehicleDataRepository vdr) {
+        this.vdr = vdr;
+    }
 
     @Override
     public Vehicle[] getVehicles() {
@@ -35,7 +37,7 @@ public class VehicleServiceImpl implements VehicleService {
             v.setBrand(datum.getBrand());
             v.setModel(datum.getModel());
             v.setName(datum.getName());
-            v.setType(datum.getType());
+            v.setCategory(datum.getCategory());
             v.setPrice(datum.getPrice());
             v.setDailyRate(datum.getDailyRate());
             v.setSeats(datum.getSeats());
@@ -44,7 +46,7 @@ public class VehicleServiceImpl implements VehicleService {
             v.setImagePath(datum.getImagePath());
             v.setTag(datum.getTag());
 
-            logger.info(v.toString());
+            logger.debug(v.toString());
             vehicles.add(v);
         }
 
@@ -65,7 +67,7 @@ public class VehicleServiceImpl implements VehicleService {
             Vehicle v = new Vehicle();
             VehicleData datum = opt.get();
             v.setId(datum.getId());
-            v.setType(datum.getType());
+            v.setCategory(datum.getCategory());
             v.setBrand(datum.getBrand());
             v.setModel(datum.getModel());
             v.setPrice(datum.getPrice());
@@ -86,7 +88,7 @@ public class VehicleServiceImpl implements VehicleService {
     public Vehicle addVehicle(Vehicle v) {
         logger.info("Adding new vehicle {}", v.toString());
         VehicleData datum = new VehicleData();
-        datum.setType(v.getType());
+        datum.setCategory(v.getCategory());
         datum.setBrand(v.getBrand());
         datum.setModel(v.getModel());
         datum.setPrice(v.getPrice());
@@ -107,7 +109,7 @@ public class VehicleServiceImpl implements VehicleService {
 
         Vehicle nv = new Vehicle();
         nv.setId(datum.getId());
-        nv.setType(datum.getType());
+        nv.setCategory(datum.getCategory());
         nv.setBrand(datum.getBrand());
         nv.setModel(datum.getModel());
         nv.setPrice(datum.getPrice());
@@ -130,8 +132,8 @@ public class VehicleServiceImpl implements VehicleService {
         }
 
         VehicleData datum = opt.get();
-        if (v.getType() != null) {
-            datum.setType(v.getType());
+        if (v.getCategory() != null) {
+            datum.setCategory(v.getCategory());
         }
         if (v.getBrand() != null) {
             datum.setBrand(v.getBrand());
@@ -179,7 +181,7 @@ public class VehicleServiceImpl implements VehicleService {
         }
     }
 
-    public List<VehicleData> findVehiclesByType(VehicleCategory type) {
-        return vdr.findByType(type);
+    public List<VehicleData> findVehiclesByType(VehicleCategoryType cat) {
+        return vdr.findByCategory(cat);
     }
 }

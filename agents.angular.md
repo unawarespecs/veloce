@@ -1,13 +1,12 @@
-
 # Veloce Car Rental AI Agent guide (Angular SPA Frontend)
 
 This repository contains an Angular 21 single-page application frontend for a car rental storefront. Keep work aligned with its current architecture and conventions.
 
 ## Project structure
 
-- App entry: [src/main.ts](../src/main.ts), root shell: [src/app/app.component.ts](../src/app/app.component.ts), route config: [src/app/app.routes.ts](../src/app/app.routes.ts)
-- Feature components live under [src/app](../src/app), grouped by domain area such as `product-list`, `cart`, `order-list`, `header`, and `sign-in`
-- Shared models belong in [src/app/model](../src/app/model), and injectable services belong in [src/app/service](../src/app/service)
+- App entry: [src/main.ts](src/main.ts), root shell: [src/app/app.component.ts](src/app/app.component.ts), route config: [src/app/app.routes.ts](src/app/app.routes.ts)
+- Feature components live under [src/app](src/app), grouped by domain area such as `product-list`, `cart`, `order-list`, `header`, and `sign-in`
+- Shared models belong in [src/app/model](src/app/model), and injectable services belong in [src/app/service](src/app/service)
 - Use the existing domain naming conventions: `*.component.ts`, `*.service.ts`, and `*.spec.ts`
 - Prefer small, focused feature components and keep route-level logic in the relevant feature folder
 
@@ -26,11 +25,11 @@ This repository contains an Angular 21 single-page application frontend for a ca
 
 ## Project-specific patterns
 
-- Route names and titles are defined centrally in [src/app/app.routes.ts](../src/app/app.routes.ts) and should stay consistent with the storefront flow: home, orders, cart, products, product detail
-- Domain model objects live under [src/app/model](../src/app/model) and should be typed explicitly; avoid loose `any` values
+- Route names and titles are defined centrally in [src/app/app.routes.ts](src/app/app.routes.ts) and should stay consistent with the storefront flow: home, orders, cart, products, product detail
+- Domain model objects live under [src/app/model](src/app/model) and should be typed explicitly; avoid loose `any` values
 - Reuse the current service/component delegation pattern instead of introducing new app-wide state libraries
 - Keep styling near the component, usually in the local `.component.css` file; avoid creating new global styling frameworks unless the feature clearly needs them
-- If adding static images, prefer Angular image optimization patterns and keep them in the existing asset structure under [public/](../public)
+- If adding static images, prefer Angular image optimization patterns and keep them in the existing asset structure under [public/](public)
 
 ## Accessibility and quality
 
@@ -48,10 +47,12 @@ This repository contains an Angular 21 single-page application frontend for a ca
 
 ## Helpful references
 
-- Project overview: [README.md](../README.md)
-- Route configuration: [src/app/app.routes.ts](../src/app/app.routes.ts)
-- App shell: [src/app/app.component.ts](../src/app/app.component.ts)
-- Models: [src/app/model](../src/app/model)
-- Services: [src/app/service](../src/app/service)
+- Project overview: [README.md](README.md)
+- Route configuration: [src/app/app.routes.ts](src/app/app.routes.ts)
+- App shell: [src/app/app.component.ts](src/app/app.component.ts)
+- Models: [src/app/model](src/app/model)
+- Services: [src/app/service](src/app/service)
+- API documentation: [docs/api](docs/api)
+- Backend implementation (Java): [cardata](cardata), [sbrentms](sbrentms)
 
-When working in this repo, keep change scope small, follow the existing Angular 21 conventions, and prefer direct reuse of the established storefront patterns over introducing new abstractions.
+When working in this repo, keep the change scope small, follow the existing Angular 21 conventions, and prefer direct reuse of the established storefront patterns over introducing new abstractions.

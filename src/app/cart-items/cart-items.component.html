@@ -1,5 +1,17 @@
 @if (cart.items().length === 0) {
-	<section class="empty-cart"><h2>Your cart is empty</h2><p>Select a vehicle from the fleet to start a reservation.</p><a href="/#fleet">Browse the Fleet</a></section>
+<section class="empty-cart">
+    <h2>Your cart is empty</h2>
+    <p>Select a vehicle from the fleet to start a reservation.</p><a href="/#fleet">Browse the Fleet</a>
+</section>
 } @else {
-	<section class="cart-list">@for (vehicle of cart.items(); track vehicle.id) { <article class="cart-item"><img [src]="vehicle.image" [alt]="vehicle.name" /><div><span>{{ vehicle.category }}</span><h2>{{ vehicle.name }}</h2><p>₱{{ vehicle.price | number }}/day · {{ vehicle.seats }} seats · {{ vehicle.transmission }}</p></div><button type="button" (click)="remove(vehicle.id)" aria-label="Remove vehicle">Remove</button></article> }<div class="cart-summary"><div><span>Estimated total</span><strong>₱{{ cart.total() | number }}</strong></div><button type="button" (click)="clear()">Clear cart</button></div><app-create-order /></section>
+<section class="cart-list">@for (vehicle of cart.items(); track vehicle.id) { <article class="cart-item"><img
+            [src]="vehicle.image" [alt]="vehicle.name" />
+        <div><span>{{ vehicle.category }}</span>
+            <h2>{{ vehicle.name }}</h2>
+            <p>₱{{ vehicle.price | number }}/day · {{ vehicle.seats }} seats · {{ vehicle.transmission }}</p>
+        </div><button type="button" (click)="remove(vehicle.id)" aria-label="Remove vehicle">Remove</button>
+    </article> }<div class="cart-summary">
+        <div><span>Estimated total</span><strong>₱{{ cart.total() | number }}</strong></div><button type="button"
+            (click)="clear()">Clear cart</button>
+    </div><app-create-order /></section>
 }

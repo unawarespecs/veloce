@@ -26,7 +26,6 @@ public class RentPlanData {
     Integer vehicleID;
     Date startRent;
     Date endRent;
-    @Deprecated(forRemoval = true)
     Double rate;
 
     @UpdateTimestamp
