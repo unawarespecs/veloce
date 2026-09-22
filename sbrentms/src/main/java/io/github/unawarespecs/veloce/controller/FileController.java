@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api/files")
 public class FileController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -25,7 +26,7 @@ public class FileController {
         this.storageService = storageService;
     }
 
-    @RequestMapping("/api/upload")
+    @RequestMapping("/upload")
     public ResponseEntity<Map<String, String>> uploadSingleFile(@RequestHeader Map<String, String> headers, @RequestParam("file") MultipartFile file) {
         logger.info("upload file: {}", file.getOriginalFilename());
         logger.info("upload contentType: {}", file.getContentType());
@@ -43,7 +44,7 @@ public class FileController {
         return ResponseEntity.ok(map);
     }
 
-    @RequestMapping(value = "/api/download/{name}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @RequestMapping(value = "/download/{name}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<?> downloadSingleFile(@PathVariable(value = "name") String fileName) {
         Resource file = null;
         logger.info("downloadfile: {}", fileName);

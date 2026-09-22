@@ -16,7 +16,10 @@ Always execute or verify code changes using these commands:
 - **Build & Compile:** `mvn clean compile`
 - **Run Tests:** `mvn test`
 - **Run Locally:** `mvn -pl sbrentms spring-boot:run`
-- Module run note: build the whole project where necessary (see Build & Compile above for command) but runtime command targets the sbrentms module.
+
+> **Module run note**: build the whole project where necessary (see Build & Compile above for command), but runtime command targets the sbrentms module.  
+> Check any .env files or environment variables for database passwords (externalized in sbrentms application.yml) before running the server.  
+> If the MySQL server is not running and the backend fails to launch with a `com.mysql.cj.jdbc.exceptions.CommunicationsException` or a `java.net.ConnectException`, inform the user.
 
 ## Architecture & Package structure
 
@@ -37,7 +40,7 @@ Ensure dependencies flow in one direction: `Controller -> Service -> Repository`
 - `io.github.unawarespecs.veloce.repository` (Spring Data Repositories)
 - `io.github.unawarespecs.veloce.entity` (Database Entities)
 - `io.github.unawarespecs.veloce.model` (Base models)
-- `io.github.unawarespecs.veloce.enums` (Enums for base models)
+- `io.github.unawarespecs.veloce.enums` (Enums for base models/entities)
 - `io.github.unawarespecs.veloce.service` (Business Logic Interfaces)
 
 #### sbrentms
@@ -102,7 +105,7 @@ public class ExampleEntityData {
 Additionally, create a data repository class as well, extending the Spring Data `CrudRepository` class (`org.springframework.data.repository.CrudRepository`):
 
 ```java
-public interface ExampleEntityDataRepository extends CrudRepository<EntityData, Integer> {
+public interface ExampleEntityDataRepository extends CrudRepository<ExampleEntityData, Integer> {
 }
 ```
 
@@ -122,7 +125,7 @@ To summarize, creation of a new entity class starts with making a `base model` -
 
 ## Quick do/don't checklist for agents
 
-- Do: follow module boundaries (edit implementations in sbrentms, update contracts in cardata only when intentionally changing data model).
+- Do: follow module boundaries (edit implementations in sbrentms, update contracts in cardata only when intentionally changing the data model).
 - Do: mirror manual mapping conventions or add a single, repo-wide mapper if adding many mappings (document it).
 - Don't: assume DTOs equal entities — code explicitly maps between them.
 - Do: handle null returns from services and convert to proper HTTP statuses in controllers.
@@ -130,5 +133,6 @@ To summarize, creation of a new entity class starts with making a `base model` -
 ## Helpful references
 
 - Project overview: [README.md](README.md)
+- API documentation: [docs/api](docs/api)
 
 When working in this repo, keep the change scope small, follow existing Java and Spring conventions, and prefer direct reuse of the established storefront patterns over introducing new abstractions.

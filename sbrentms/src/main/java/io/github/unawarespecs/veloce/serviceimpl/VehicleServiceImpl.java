@@ -37,6 +37,7 @@ public class VehicleServiceImpl implements VehicleService {
             v.setBrand(datum.getBrand());
             v.setModel(datum.getModel());
             v.setName(datum.getName());
+            v.setDescription(datum.getDescription());
             v.setCategory(datum.getCategory());
             v.setPrice(datum.getPrice());
             v.setDailyRate(datum.getDailyRate());
@@ -73,6 +74,7 @@ public class VehicleServiceImpl implements VehicleService {
             v.setPrice(datum.getPrice());
             v.setDailyRate(datum.getDailyRate());
             v.setName(datum.getName());
+            v.setDescription(datum.getDescription());
             v.setSeats(datum.getSeats());
             v.setTransmission(datum.getTransmission());
             v.setFuel(datum.getFuel());
@@ -94,6 +96,7 @@ public class VehicleServiceImpl implements VehicleService {
         datum.setPrice(v.getPrice());
         datum.setDailyRate(v.getDailyRate());
         datum.setName(v.getName());
+        datum.setDescription(v.getDescription());
         datum.setSeats(v.getSeats());
         datum.setTransmission(v.getTransmission());
         datum.setFuel(v.getFuel());
@@ -115,6 +118,7 @@ public class VehicleServiceImpl implements VehicleService {
         nv.setPrice(datum.getPrice());
         nv.setDailyRate(datum.getDailyRate());
         nv.setName(datum.getName());
+        nv.setDescription(datum.getDescription());
         nv.setSeats(datum.getSeats());
         nv.setTransmission(datum.getTransmission());
         nv.setFuel(datum.getFuel());
@@ -149,6 +153,9 @@ public class VehicleServiceImpl implements VehicleService {
         }
         if (v.getName() != null) {
             datum.setName(v.getName());
+        }
+        if (v.getDescription() != null) {
+            datum.setDescription(v.getDescription());
         }
         if (v.getSeats() != null) {
             datum.setSeats(v.getSeats());

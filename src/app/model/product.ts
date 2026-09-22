@@ -9,7 +9,8 @@ export interface Vehicle {
     transmission: string;
     fuel: string;
     image: string;
-    tag: string | null;
+    tag?: string | null;
+    description?: string;
 }
 
 @Injectable({ providedIn: 'root' })

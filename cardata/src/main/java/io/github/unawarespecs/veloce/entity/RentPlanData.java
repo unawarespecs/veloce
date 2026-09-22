@@ -26,6 +26,7 @@ public class RentPlanData {
     Integer vehicleID;
     Date startRent;
     Date endRent;
+    // Sync this value from the VehicleData dailyRate field
     Double rate;
 
     @UpdateTimestamp

@@ -28,10 +28,13 @@ public class VehicleData {
     String brand;
     String model;
     @Column(nullable = false, scale = 2)
-    double price;
+    double price; // Full price of the vehicle when it was purchased. Do NOT display on frontend.
 
+    // Vehicle description and characteristics (to display on web frontend).
     String name;
     VehicleCategoryType category;
+    String description;
+    // Source of truth for vehicle daily rent rate. Try to sync daily rate with RentPlanData rate field
     @Column(nullable = false, scale = 2)
     double dailyRate;
     int seats;
