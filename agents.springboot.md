@@ -113,10 +113,10 @@ Lastly, create a service interface for CRUD operations.
 
 ```java
 public interface ExampleEntityService {
-    ExampleEntity[] getExampleEntities() throws Exception;
-    ExampleEntity getExampleEntity(Integer id) throws Exception;
-    ExampleEntity addExampleEntity(ExampleEntity entity) throws Exception;
-    ExampleEntity updateExampleEntity(ExampleEntity entity) throws Exception;
+    ExampleEntity[] getAll() throws Exception;
+    ExampleEntity get(Integer id) throws Exception;
+    ExampleEntity create(ExampleEntity entity) throws Exception;
+    ExampleEntity update(ExampleEntity entity) throws Exception;
     void delete(Integer id) throws Exception;
 }
 ```

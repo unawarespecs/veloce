@@ -45,6 +45,23 @@
     gap: 1px;
     background: var(--border);
 }
+.fleet-message {
+    padding: 56px 24px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    text-align: center;
+}
+.fleet-message h3 {
+    margin: 0 0 10px;
+    color: var(--foreground);
+    font-size: 28px;
+}
+.fleet-message p {
+    max-width: 480px;
+    margin: 0 auto;
+    color: var(--muted-foreground);
+    line-height: 1.6;
+}
 .vehicle {
     position: relative;
     overflow: hidden;

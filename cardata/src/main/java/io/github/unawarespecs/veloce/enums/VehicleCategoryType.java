@@ -4,5 +4,7 @@ public enum VehicleCategoryType {
     Sedan,
     Van,
     SUV,
-    Truck
+    Truck,
+    Sports,
+    Luxury
 }

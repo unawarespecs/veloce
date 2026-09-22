@@ -27,8 +27,4 @@ public class Vehicle {
     private VehicleFuelType fuel;
     private String imagePath;
     private String tag;
-
-    public String getFullName() {
-        return brand + " " + model;
-    }
 }

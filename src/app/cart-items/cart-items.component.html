@@ -5,7 +5,7 @@
 </section>
 } @else {
 <section class="cart-list">@for (vehicle of cart.items(); track vehicle.id) { <article class="cart-item"><img
-            [src]="vehicle.image" [alt]="vehicle.name" />
+            [src]="vehicle.imagePath" [alt]="vehicle.name" />
         <div><span>{{ vehicle.category }}</span>
             <h2>{{ vehicle.name }}</h2>
             <p>₱{{ vehicle.price | number }}/day · {{ vehicle.seats }} seats · {{ vehicle.transmission }}</p>

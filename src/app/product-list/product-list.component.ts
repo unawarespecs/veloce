@@ -3,7 +3,7 @@ import { DecimalPipe } from '@angular/common';
 import { ArrowRight } from '../icon/arrow-right.component';
 import { CartService } from '../service/cart.service';
 import { ProductService } from '../service/product.service';
-import { Vehicle } from '../model/product';
+import { Vehicle } from '../model/vehicle';
 import { ProductDetails } from '../product-details/product-details.component';
 
 @Component({
@@ -15,13 +15,10 @@ import { ProductDetails } from '../product-details/product-details.component';
 export class ProductList {
     readonly categories = [
         'All',
-        'Sports',
-        'Luxury Sedan',
+        'Sedan',
         'SUV',
         'Truck',
         'Van',
-        'Ultra Luxury',
-        'Grand Tourer',
     ];
     readonly activeCategory = signal('All');
     readonly hoveredId = signal<number | null>(null);
@@ -30,7 +27,8 @@ export class ProductList {
     private readonly productService = inject(ProductService);
     private readonly cart = inject(CartService);
 
-    readonly fleet = computed(() => this.productService.getFleet());
+    readonly fleet = this.productService.fleet;
+    readonly fleetStatus = this.productService.fleetStatus;
 
     readonly filteredFleet = computed(() =>
         this.activeCategory() === 'All'

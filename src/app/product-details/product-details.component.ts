@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Vehicle } from '../model/product';
+import { Vehicle } from '../model/vehicle';
 import { CartService } from '../service/cart.service';
 import { ProductService } from '../service/product.service';
 import { ArrowRight } from '../icon/arrow-right.component';

@@ -12,35 +12,47 @@
             }
         </div>
     </div>
-    <div class="fleet-grid">
-        @for (vehicle of filteredFleet(); track vehicle.id) {
-            <article class="vehicle" (mouseenter)="hoveredId.set(vehicle.id)" (mouseleave)="hoveredId.set(null)" (click)="openDetails(vehicle)">
-                @if (vehicle.tag) {
-                    <span class="vehicle-tag">{{ vehicle.tag }}</span>
-                }
-                <div class="vehicle-image">
-                    <img [src]="vehicle.image" [alt]="vehicle.name" />
-                </div>
-                <div class="vehicle-content">
-                    <div class="vehicle-title">
-                        <div>
-                            <span>{{ vehicle.category }}</span>
-                            <h3>{{ vehicle.name }}</h3>
+    @if (fleetStatus() === 'loading') {
+        <div class="fleet-message" role="status">
+            <h3>Loading our fleet</h3>
+            <p>We are retrieving the latest available vehicles. Please wait a moment.</p>
+        </div>
+    } @else if (fleetStatus() === 'error' || filteredFleet().length === 0) {
+        <div class="fleet-message" role="alert">
+            <h3>Fleet currently unavailable</h3>
+            <p>We are unable to show available vehicles right now. Check back later or contact us for assistance.</p>
+        </div>
+    } @else {
+        <div class="fleet-grid">
+            @for (vehicle of filteredFleet(); track vehicle.id) {
+                <article class="vehicle" (mouseenter)="hoveredId.set(vehicle.id)" (mouseleave)="hoveredId.set(null)" (click)="openDetails(vehicle)">
+                    @if (vehicle.tag) {
+                        <span class="vehicle-tag">{{ vehicle.tag }}</span>
+                    }
+                    <div class="vehicle-image">
+                        <img [src]="vehicle.imagePath" [alt]="vehicle.name" />
+                    </div>
+                    <div class="vehicle-content">
+                        <div class="vehicle-title">
+                            <div>
+                                <span>{{ vehicle.category }}</span>
+                                <h3>{{ vehicle.name }}</h3>
+                            </div>
+                            <strong>₱{{ vehicle.dailyRate | number }}<small>/day</small></strong>
                         </div>
-                        <strong>₱{{ vehicle.price | number }}<small>/day</small></strong>
+                        <div class="vehicle-specs">
+                            <span>{{ vehicle.seats }} Seats</span><i>|</i><span>{{ vehicle.transmission }}</span><i>|</i><span>{{ vehicle.fuel }}</span>
+                        </div>
+                        <button type="button" class="reserve" [class.highlighted]="hoveredId() === vehicle.id" (click)="reserve(vehicle, $event)">
+                            Reserve Now <app-arrow-right [size]="14" />
+                        </button>
                     </div>
-                    <div class="vehicle-specs">
-                        <span>{{ vehicle.seats }} Seats</span><i>|</i><span>{{ vehicle.transmission }}</span><i>|</i><span>{{ vehicle.fuel }}</span>
-                    </div>
-                    <button type="button" class="reserve" [class.highlighted]="hoveredId() === vehicle.id" (click)="reserve(vehicle, $event)">
-                        Reserve Now <app-arrow-right [size]="14" />
-                    </button>
-                </div>
-            </article>
-        }
-    </div>
+                </article>
+            }
+        </div>
+    }
     <div class="fleet-more">
-        <a href="#booking">View All 150+ Vehicles <app-arrow-right /></a>
+        <a href="#booking">View All 50+ Vehicles <app-arrow-right /></a>
     </div>
 
     @if (selectedVehicle()) {

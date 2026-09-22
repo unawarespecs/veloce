@@ -10,7 +10,7 @@
         @if (v.tag) {
           <span class="vehicle-tag">{{ v.tag }}</span>
         }
-        <img [src]="v.image" [alt]="v.name" class="vehicle-image" />
+        <img [src]="v.imagePath" [alt]="v.name" class="vehicle-image" />
       </div>
 
       <div class="details-body">
@@ -18,7 +18,7 @@
           <span class="vehicle-category">{{ v.category }}</span>
           <h2 id="vehicle-title" class="vehicle-name">{{ v.name }}</h2>
           <div class="vehicle-price">
-            <span class="price-amount">₱{{ v.price | number }}</span>
+            <span class="price-amount">₱{{ v.dailyRate | number }}</span>
             <span class="price-period">/ day</span>
           </div>
         </div>
