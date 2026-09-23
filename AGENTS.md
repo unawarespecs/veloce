@@ -1,6 +1,6 @@
 # Veloce Car Rental AI agent guide
 
-This repository is a full-stack e-commerce web application, utilizing an Angular 21 single-page application for the frontend, and Spring Boot 4.1.0 for the backend.
+This repository is a full-stack e-commerce web application for a car rental business, utilizing an Angular 21 single-page application for the frontend, and Spring Boot 4.1.0 for the backend.
 
 Keep work aligned with its current architecture and conventions.
 
