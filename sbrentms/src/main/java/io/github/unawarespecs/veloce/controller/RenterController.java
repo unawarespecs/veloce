@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/renter")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RenterController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private RenterService renterService;
+    private final RenterService renterService;
 
     public RenterController(RenterService renterService) {
         this.renterService = renterService;
@@ -44,7 +45,7 @@ public class RenterController {
         return resp;
     }
 
-    @PutMapping("/")
+    @PostMapping("/")
     public ResponseEntity<?> add(@RequestBody Renter re) {
         logger.info("PUT /api/renter - adding {}", re.toString());
         ResponseEntity<?> resp;
@@ -59,7 +60,7 @@ public class RenterController {
         return resp;
     }
 
-    @PostMapping("/")
+    @PutMapping("/")
     public ResponseEntity<?> update(@RequestBody Renter re) {
         logger.info("POST /api/renter - updating details of {}", re.toString());
         ResponseEntity<?> resp;

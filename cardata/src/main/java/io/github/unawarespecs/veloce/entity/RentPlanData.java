@@ -1,6 +1,7 @@
 package io.github.unawarespecs.veloce.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.github.unawarespecs.veloce.enums.ModeOfPayment;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,12 +23,13 @@ public class RentPlanData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     Integer id;
-
     Integer vehicleID;
     Date startRent;
     Date endRent;
-    // Sync this value from the VehicleData dailyRate field
-    Double rate;
+    Integer daysRent;
+    Double totalPrice;
+    String customerName;
+    ModeOfPayment payMode;
 
     @UpdateTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")

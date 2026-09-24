@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/vehicle")
+@CrossOrigin(origins = "http://localhost:4200")
 public class VehicleController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -46,7 +47,7 @@ public class VehicleController {
         return resp;
     }
 
-    @PutMapping("/")
+    @PostMapping("/")
     public ResponseEntity<?> add(@RequestBody Vehicle v) {
         logger.info("PUT /api/vehicle - adding {}", v.toString());
         ResponseEntity<?> resp;
@@ -61,7 +62,7 @@ public class VehicleController {
         return resp;
     }
 
-    @PostMapping("/")
+    @PutMapping("/")
     public ResponseEntity<?> update(@RequestBody Vehicle v) {
         logger.info("POST /api/vehicle - updating details of {}", v.toString());
         ResponseEntity<?> resp;

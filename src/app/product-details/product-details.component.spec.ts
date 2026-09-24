@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { ProductDetails } from './product-details.component';
-import { Vehicle } from '../model/product';
+import { Vehicle } from '../model/vehicle';
 import { CartService } from '../service/cart.service';
 import { provideRouter } from '@angular/router';
 
@@ -45,7 +45,7 @@ describe('ProductDetails', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should display vehicle details including name, seats, transmission, fuel, price, and description', () => {
+    it('should display vehicle details including name, seats, transmission, fuel, daily rate, and description', () => {
         const nativeElement: HTMLElement = fixture.nativeElement;
 
         expect(nativeElement.textContent).toContain('Test Supercar');
@@ -53,7 +53,9 @@ describe('ProductDetails', () => {
         expect(nativeElement.textContent).toContain('Automatic');
         expect(nativeElement.textContent).toContain('Petrol');
         expect(nativeElement.textContent).toContain('15,000');
-        expect(nativeElement.textContent).toContain('A breathtaking high-performance sports car with unmatched speed.');
+        expect(nativeElement.textContent).toContain(
+            'A breathtaking high-performance sports car with unmatched speed.',
+        );
     });
 
     it('should emit close event when close button is clicked', () => {
@@ -74,7 +76,9 @@ describe('ProductDetails', () => {
             reservedVehicle = v;
         });
 
-        const reserveBtn = fixture.nativeElement.querySelector('.reserve-button') as HTMLButtonElement;
+        const reserveBtn = fixture.nativeElement.querySelector(
+            '.reserve-button',
+        ) as HTMLButtonElement;
         reserveBtn.click();
 
         expect(reservedVehicle).toEqual(mockVehicle);

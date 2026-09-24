@@ -7,7 +7,7 @@ export type FleetStatus = 'loading' | 'loaded' | 'error';
 @Injectable({
     providedIn: 'root',
 })
-export class ProductService {
+export class VehicleService {
     private API_BASE_URL = environment.apiBaseUrl;
     private readonly http = inject(HttpClient);
     private readonly fleetSignal = signal<Vehicle[]>([]);
@@ -18,7 +18,7 @@ export class ProductService {
     readonly selectedVehicle = this.selectedVehicleSignal.asReadonly();
 
     constructor() {
-        this.http.get<Vehicle[]>(`${this.API_BASE_URL}/vehicle/`).subscribe({
+        this.http.get<Vehicle[]>(`${this.API_BASE_URL}/api/vehicle/`).subscribe({
             next: (vehicles) => {
                 console.log(vehicles);
                 this.fleetSignal.set(vehicles);

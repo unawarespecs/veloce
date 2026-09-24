@@ -34,11 +34,11 @@ public class RenterServiceImpl implements RenterService {
 
             r.setId(datum.getId());
             r.setName(datum.getName());
-            r.setPayMode(datum.getPayMode());
+            r.setEmail(datum.getEmail());
+            r.setPassword(datum.getPassword());
             r.setRentedVehicleID(datum.getRentedVehicleID());
-            r.setVehicleBrand(datum.getVehicleBrand());
-            r.setVehicleModel(datum.getVehicleModel());
             r.setRentPlanID(datum.getRentPlanID());
+            r.setVehicleName(datum.getVehicleName());
             renters.add(r);
         }
 
@@ -60,11 +60,11 @@ public class RenterServiceImpl implements RenterService {
             RenterData datum = opt.get();
             r.setId(datum.getId());
             r.setName(datum.getName());
-            r.setPayMode(datum.getPayMode());
+            r.setEmail(datum.getEmail());
+            r.setPassword(datum.getPassword());
             r.setRentedVehicleID(datum.getRentedVehicleID());
-            r.setVehicleBrand(datum.getVehicleBrand());
-            r.setVehicleModel(datum.getVehicleModel());
             r.setRentPlanID(datum.getRentPlanID());
+            r.setVehicleName(datum.getVehicleName());
             return r;
         }
         logger.error("Error: Can't locate renter details with ID {}", id);
@@ -76,11 +76,11 @@ public class RenterServiceImpl implements RenterService {
         logger.info("Adding new renter {}", r.toString());
         RenterData datum = new RenterData();
         datum.setName(r.getName());
-        datum.setPayMode(r.getPayMode());
+        datum.setEmail(r.getEmail());
+        datum.setPassword(r.getPassword());
         datum.setRentedVehicleID(r.getRentedVehicleID());
-        datum.setVehicleBrand(r.getVehicleBrand());
-        datum.setVehicleModel(r.getVehicleModel());
         datum.setRentPlanID(r.getRentPlanID());
+        datum.setVehicleName(r.getVehicleName());
         logger.info("Added new renter {} to database", r);
         return createRenterFromRepo(datum);
     }
@@ -89,15 +89,15 @@ public class RenterServiceImpl implements RenterService {
     private Renter createRenterFromRepo(RenterData datum) {
         rdr.save(datum);
 
-        Renter nr = new Renter();
-        nr.setId(datum.getId());
-        nr.setName(datum.getName());
-        nr.setPayMode(datum.getPayMode());
-        nr.setRentedVehicleID(datum.getRentedVehicleID());
-        nr.setVehicleBrand(datum.getVehicleBrand());
-        nr.setVehicleModel(datum.getVehicleModel());
-        nr.setRentPlanID(datum.getRentPlanID());
-        return nr;
+        Renter r = new Renter();
+        r.setId(datum.getId());
+        r.setName(datum.getName());
+        r.setEmail(datum.getEmail());
+        r.setPassword(datum.getPassword());
+        r.setRentedVehicleID(datum.getRentedVehicleID());
+        r.setRentPlanID(datum.getRentPlanID());
+        r.setVehicleName(datum.getVehicleName());
+        return r;
     }
 
     @Override
@@ -112,17 +112,17 @@ public class RenterServiceImpl implements RenterService {
         if (r.getName() != null) {
             datum.setName(r.getName());
         }
-        if (r.getPayMode() != null) {
-            datum.setPayMode(r.getPayMode());
+        if (r.getEmail() != null) {
+            datum.setEmail(r.getEmail());
+        }
+        if (r.getPassword() != null) {
+            datum.setPassword(r.getPassword());
         }
         if (r.getRentedVehicleID() != null) {
             datum.setRentedVehicleID(r.getRentedVehicleID());
         }
-        if (r.getVehicleBrand() != null) {
-            datum.setVehicleBrand(r.getVehicleBrand());
-        }
-        if (r.getVehicleModel() != null) {
-            datum.setVehicleModel(r.getVehicleModel());
+        if (r.getVehicleName() != null) {
+            datum.setVehicleName(r.getVehicleName());
         }
         if (r.getRentPlanID() != null) {
             datum.setRentPlanID(r.getRentPlanID());

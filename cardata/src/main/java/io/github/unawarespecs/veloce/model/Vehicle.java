@@ -14,13 +14,12 @@ public class Vehicle {
     private int id;
     private String brand;
     private String model;
-    private Double price; // Full price of the vehicle when it was purchased. Do NOT display on frontend.
+    private Double price; // Full price of the vehicle when it was purchased. Do NOT display on the frontend.
 
     // Vehicle description and characteristics (to display on web frontend).
     private String name;
     private String description;
     private VehicleCategoryType category;
-    // Source of truth for vehicle daily rent rate. Try to sync daily rate with RentPlan rate field
     private Double dailyRate;
     private Integer seats;
     private VehicleTransmissionType transmission;

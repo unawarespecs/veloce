@@ -1,5 +1,6 @@
 package io.github.unawarespecs.veloce.model;
 
+import io.github.unawarespecs.veloce.enums.ModeOfPayment;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,6 +11,8 @@ public class RentPlan {
     private Integer vehicleID;
     private Date startRent;
     private Date endRent;
-    // Sync this value from the Vehicle dailyRate field
-    private Double rate;
+    private Integer daysRent;
+    private Double totalPrice;
+    private String customerName;
+    private ModeOfPayment payMode;
 }

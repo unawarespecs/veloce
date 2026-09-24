@@ -11,7 +11,7 @@ import { DecimalPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vehicle } from '../model/vehicle';
 import { CartService } from '../service/cart.service';
-import { ProductService } from '../service/product.service';
+import { VehicleService } from '../service/vehicle.service';
 import { ArrowRight } from '../icon/arrow-right.component';
 
 @Component({
@@ -27,7 +27,7 @@ export class ProductDetails {
     readonly reserve = output<Vehicle>();
 
     private readonly cartService = inject(CartService);
-    private readonly productService = inject(ProductService);
+    private readonly productService = inject(VehicleService);
     private readonly route = inject(ActivatedRoute, { optional: true });
     private readonly router = inject(Router, { optional: true });
 

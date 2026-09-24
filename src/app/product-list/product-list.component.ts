@@ -2,7 +2,7 @@ import { Component, computed, signal, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { ArrowRight } from '../icon/arrow-right.component';
 import { CartService } from '../service/cart.service';
-import { ProductService } from '../service/product.service';
+import { VehicleService } from '../service/vehicle.service';
 import { Vehicle } from '../model/vehicle';
 import { ProductDetails } from '../product-details/product-details.component';
 
@@ -24,7 +24,7 @@ export class ProductList {
     readonly hoveredId = signal<number | null>(null);
     readonly selectedVehicle = signal<Vehicle | null>(null);
 
-    private readonly productService = inject(ProductService);
+    private readonly productService = inject(VehicleService);
     private readonly cart = inject(CartService);
 
     readonly fleet = this.productService.fleet;

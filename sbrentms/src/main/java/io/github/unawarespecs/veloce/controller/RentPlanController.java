@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/rentplan")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RentPlanController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -45,7 +46,7 @@ public class RentPlanController {
         return resp;
     }
 
-    @PutMapping("/")
+    @PostMapping("/")
     public ResponseEntity<?> add(@RequestBody RentPlan rp) {
         logger.info("PUT /api/rentplan - adding {}", rp.toString());
         ResponseEntity<?> resp;
@@ -60,7 +61,7 @@ public class RentPlanController {
         return resp;
     }
 
-    @PostMapping("/")
+    @PutMapping("/")
     public ResponseEntity<?> update(@RequestBody RentPlan rp) {
         logger.info("POST /api/rentplan - updating details of {}", rp.toString());
         ResponseEntity<?> resp;

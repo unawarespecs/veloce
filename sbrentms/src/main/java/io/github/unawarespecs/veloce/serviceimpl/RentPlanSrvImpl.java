@@ -35,7 +35,10 @@ public class RentPlanSrvImpl implements RentPlanService {
             rp.setVehicleID(datum.getVehicleID());
             rp.setStartRent(datum.getStartRent());
             rp.setEndRent(datum.getEndRent());
-            rp.setRate(datum.getRate());
+            rp.setTotalPrice(datum.getTotalPrice());
+            rp.setDaysRent(datum.getDaysRent());
+            rp.setCustomerName(datum.getCustomerName());
+            rp.setPayMode(datum.getPayMode());
             rentPlans.add(rp);
         }
 
@@ -58,7 +61,10 @@ public class RentPlanSrvImpl implements RentPlanService {
             rp.setVehicleID(datum.getVehicleID());
             rp.setStartRent(datum.getStartRent());
             rp.setEndRent(datum.getEndRent());
-            rp.setRate(datum.getRate());
+            rp.setTotalPrice(datum.getTotalPrice());
+            rp.setDaysRent(datum.getDaysRent());
+            rp.setCustomerName(datum.getCustomerName());
+            rp.setPayMode(datum.getPayMode());
             return rp;
         }
         logger.error("Error: Can't locate plan with ID {}", id);
@@ -72,7 +78,10 @@ public class RentPlanSrvImpl implements RentPlanService {
         datum.setVehicleID(rp.getVehicleID());
         datum.setStartRent(rp.getStartRent());
         datum.setEndRent(rp.getEndRent());
-        datum.setRate(rp.getRate());
+        datum.setTotalPrice(rp.getTotalPrice());
+        datum.setCustomerName(rp.getCustomerName());
+        datum.setDaysRent(rp.getDaysRent());
+        datum.setPayMode(rp.getPayMode());
         logger.info("Added plan {} to database", rp);
         return createRentPlanFromRepo(datum);
     }
@@ -81,13 +90,16 @@ public class RentPlanSrvImpl implements RentPlanService {
     private RentPlan createRentPlanFromRepo(RentPlanData datum) {
         rpdr.save(datum);
 
-        RentPlan nrp = new RentPlan();
-        nrp.setId(datum.getId());
-        nrp.setVehicleID(datum.getVehicleID());
-        nrp.setStartRent(datum.getStartRent());
-        nrp.setEndRent(datum.getEndRent());
-        nrp.setRate(datum.getRate());
-        return nrp;
+        RentPlan rp = new RentPlan();
+        rp.setId(datum.getId());
+        rp.setVehicleID(datum.getVehicleID());
+        rp.setStartRent(datum.getStartRent());
+        rp.setEndRent(datum.getEndRent());
+        rp.setTotalPrice(datum.getTotalPrice());
+        rp.setDaysRent(datum.getDaysRent());
+        rp.setCustomerName(datum.getCustomerName());
+        rp.setPayMode(datum.getPayMode());
+        return rp;
     }
 
     @Override
@@ -108,9 +120,18 @@ public class RentPlanSrvImpl implements RentPlanService {
         if (rp.getEndRent() != null) {
             datum.setEndRent(rp.getEndRent());
         }
-        if (rp.getRate() != null) {
-            datum.setRate(rp.getRate());
+        if (rp.getTotalPrice() != null) {
+            datum.setTotalPrice(rp.getTotalPrice());
         }
+        if (rp.getDaysRent() != null) {
+            datum.setDaysRent(rp.getDaysRent());
+        }
+        if (rp.getCustomerName() != null) {
+            datum.setCustomerName(rp.getCustomerName());
+        }
+        if (rp.getPayMode() != null) {
+            datum.setPayMode(rp.getPayMode());
+        } ;
         return createRentPlanFromRepo(datum);
     }
 

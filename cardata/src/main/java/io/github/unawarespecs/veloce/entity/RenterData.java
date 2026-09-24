@@ -1,5 +1,6 @@
 package io.github.unawarespecs.veloce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.unawarespecs.veloce.enums.ModeOfPayment;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -24,12 +25,12 @@ public class RenterData {
     Integer id;
 
     String name;
-    ModeOfPayment payMode;
+    String email;
+    String password;
 
     Integer rentPlanID;
     Integer rentedVehicleID;
-    String vehicleBrand;
-    String vehicleModel;
+    String vehicleName;
 
     @UpdateTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
