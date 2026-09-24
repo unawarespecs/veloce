@@ -54,6 +54,16 @@
 .button-secondary {
     color: var(--secondary-foreground) !important;
     background: var(--secondary-button);
+    cursor: pointer;
+    border: none;
+}
+
+.user-greeting {
+    color: var(--foreground);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0 4px;
 }
 
 .menu-toggle {

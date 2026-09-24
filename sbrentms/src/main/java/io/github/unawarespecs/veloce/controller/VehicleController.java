@@ -21,7 +21,7 @@ public class VehicleController {
         this.vehicleService = vehicleService;
     }
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})
     public ResponseEntity<?> listVehicles() {
         logger.info("GET /api/vehicle - listing all registered vehicles");
         ResponseEntity<?> resp;
@@ -47,7 +47,7 @@ public class VehicleController {
         return resp;
     }
 
-    @PostMapping("/")
+    @PostMapping({"", "/"})
     public ResponseEntity<?> add(@RequestBody Vehicle v) {
         logger.info("PUT /api/vehicle - adding {}", v.toString());
         ResponseEntity<?> resp;
@@ -62,7 +62,7 @@ public class VehicleController {
         return resp;
     }
 
-    @PutMapping("/")
+    @PutMapping({"", "/"})
     public ResponseEntity<?> update(@RequestBody Vehicle v) {
         logger.info("POST /api/vehicle - updating details of {}", v.toString());
         ResponseEntity<?> resp;

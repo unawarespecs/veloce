@@ -19,13 +19,13 @@ public class RenterController {
         this.renterService = renterService;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<?> listRentPlans() {
+    @GetMapping({"", "/"})
+    public ResponseEntity<?> listRenters() {
         logger.info("GET /api/renter - listing all registered customers");
         ResponseEntity<?> resp;
         try {
-            Renter[] rentplans = renterService.getRenters();
-            resp = ResponseEntity.ok().body(rentplans);
+            Renter[] renters = renterService.getRenters();
+            resp = ResponseEntity.ok().body(renters);
         } catch (Exception e) {
             resp = ResponseEntity.internalServerError().body(e);
         }
@@ -45,30 +45,30 @@ public class RenterController {
         return resp;
     }
 
-    @PostMapping("/")
+    @PostMapping({"", "/"})
     public ResponseEntity<?> add(@RequestBody Renter re) {
-        logger.info("PUT /api/renter - adding {}", re.toString());
+        logger.info("POST /api/renter - adding {}", re.toString());
         ResponseEntity<?> resp;
         try {
-            Renter newRentPlan = renterService.addRenter(re);
-            logger.info("{} added", newRentPlan.toString());
-            resp = ResponseEntity.ok(newRentPlan);
+            Renter newRenter = renterService.addRenter(re);
+            logger.info("{} added", newRenter.toString());
+            resp = ResponseEntity.ok(newRenter);
         } catch (Exception e) {
-            logger.error("Failed to add plan {}: {}", re, e.getMessage());
+            logger.error("Failed to add renter {}: {}", re, e.getMessage());
             resp = ResponseEntity.internalServerError().body(e);
         }
         return resp;
     }
 
-    @PutMapping("/")
+    @PutMapping({"", "/"})
     public ResponseEntity<?> update(@RequestBody Renter re) {
-        logger.info("POST /api/renter - updating details of {}", re.toString());
+        logger.info("PUT /api/renter - updating details of {}", re.toString());
         ResponseEntity<?> resp;
         try {
             Renter updatedRenter = renterService.updateRenter(re);
             resp = ResponseEntity.ok(updatedRenter);
         } catch (Exception e) {
-            logger.error("Failed to update vehicle {} details: {}", re, e.getMessage());
+            logger.error("Failed to update renter {} details: {}", re, e.getMessage());
             resp = ResponseEntity.internalServerError().body(e);
         }
         return resp;

@@ -15,12 +15,11 @@ public class RentPlanController {
 
     private final RentPlanService rentPlanService;
 
-    public RentPlanController(RentPlanService rentPlanService)
-    {
+    public RentPlanController(RentPlanService rentPlanService) {
         this.rentPlanService = rentPlanService;
     }
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})
     public ResponseEntity<?> listRentPlans() {
         logger.info("GET /api/rentplan - listing all plans");
         ResponseEntity<?> resp;
@@ -46,7 +45,7 @@ public class RentPlanController {
         return resp;
     }
 
-    @PostMapping("/")
+    @PostMapping({"", "/"})
     public ResponseEntity<?> add(@RequestBody RentPlan rp) {
         logger.info("PUT /api/rentplan - adding {}", rp.toString());
         ResponseEntity<?> resp;
@@ -61,7 +60,7 @@ public class RentPlanController {
         return resp;
     }
 
-    @PutMapping("/")
+    @PutMapping({"", "/"})
     public ResponseEntity<?> update(@RequestBody RentPlan rp) {
         logger.info("POST /api/rentplan - updating details of {}", rp.toString());
         ResponseEntity<?> resp;
