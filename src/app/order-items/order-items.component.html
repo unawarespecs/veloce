@@ -1,1 +1,19 @@
-<p>order-items works!</p>
+<article class="order-item">
+    @if (vehicleImage()) {
+        <img class="vehicle-preview" [src]="vehicleImage()" [alt]="vehicleName()" />
+    }
+    <div class="order-details">
+        <p class="order-label">Reserved vehicle</p>
+        <h2>{{ vehicleName() }}</h2>
+        <p class="order-dates">
+            {{ rentPlan().startRent | date: 'mediumDate' }} - {{ rentPlan().endRent | date: 'mediumDate' }}
+        </p>
+    </div>
+    <div class="order-total">
+        <span>Total price</span>
+        <strong>{{ rentPlan().totalPrice | currency: 'PHP' : 'symbol' : '1.2-2' }}</strong>
+    </div>
+    <button type="button" class="cancel-button" (click)="cancel.emit()">
+        Cancel reservation
+    </button>
+</article>

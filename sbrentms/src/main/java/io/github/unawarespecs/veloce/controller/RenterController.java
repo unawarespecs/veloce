@@ -86,4 +86,15 @@ public class RenterController {
         }
         return resp;
     }
+
+    @DeleteMapping("/{id}/rental")
+    public ResponseEntity<?> clearRentalDetails(@PathVariable final Integer id) {
+        logger.info("DELETE /api/renter/{}/rental - clearing rental details", id);
+        try {
+            return ResponseEntity.ok(renterService.clearRentalDetails(id));
+        } catch (Exception e) {
+            logger.error("Failed to clear rental details for renter {}: {}", id, e.getMessage());
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
 }

@@ -131,6 +131,21 @@ public class RenterServiceImpl implements RenterService {
     }
 
     @Override
+    public Renter clearRentalDetails(Integer id) {
+        Optional<RenterData> opt = rdr.findById(id);
+        if (opt.isEmpty()) {
+            logger.error("Error: Can't locate renter details with ID {} for clearing rental details", id);
+            return null;
+        }
+
+        RenterData datum = opt.get();
+        datum.setRentPlanID(null);
+        datum.setRentedVehicleID(null);
+        datum.setVehicleName(null);
+        return createRenterFromRepo(datum);
+    }
+
+    @Override
     public void delete(Integer id) {
         logger.info("Deleting renter {}", id);
         Optional<RenterData> opt = rdr.findById(id);

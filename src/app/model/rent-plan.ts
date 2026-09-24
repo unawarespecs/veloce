@@ -1,8 +1,9 @@
 export interface RentPlan {
-    id: number;
+    id?: number;
+    renterID?: number;
     vehicleID: number;
-    startRent: Date;
-    endRent: Date;
+    startRent: Date | string;
+    endRent: Date | string;
     daysRent: number;
     totalPrice: number;
     customerName: string;

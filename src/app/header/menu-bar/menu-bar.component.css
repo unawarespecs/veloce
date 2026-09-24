@@ -58,6 +58,21 @@
     border: none;
 }
 
+.cart-link {
+    position: relative;
+}
+
+.cart-badge {
+    background: var(--primary, #c8a251);
+    color: var(--primary-foreground, #000);
+    border-radius: 9999px;
+    padding: 2px 7px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    margin-left: 6px;
+}
+
 .user-greeting {
     color: var(--foreground);
     font-size: 13px;

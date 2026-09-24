@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ArrowRight } from '../../icon/arrow-right.component';
 import { RenterService } from '../../service/renter.service';
+import { CartService } from '../../service/cart.service';
 
 @Component({
     selector: 'app-menu-bar',
@@ -11,6 +12,7 @@ import { RenterService } from '../../service/renter.service';
 })
 export class MenuBar {
     private readonly renterService = inject(RenterService);
+    readonly cart = inject(CartService);
 
     readonly menuOpen = signal(false);
     readonly currentRenter = this.renterService.currentRenter;

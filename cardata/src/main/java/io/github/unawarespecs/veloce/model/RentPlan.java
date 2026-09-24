@@ -8,6 +8,7 @@ import java.util.Date;
 @Data
 public class RentPlan {
     private int id;
+    private Integer renterID;
     private Integer vehicleID;
     private Date startRent;
     private Date endRent;

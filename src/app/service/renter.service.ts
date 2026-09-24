@@ -48,7 +48,25 @@ export class RenterService {
   }
 
   updateRenter(renter: Partial<Renter> & { id: number }): Observable<Renter> {
-    return this.http.put<Renter>(`${this.API_BASE_URL}/api/renter/`, renter);
+    return this.http.put<Renter>(`${this.API_BASE_URL}/api/renter/`, renter).pipe(
+      tap((updated) => {
+        const current = this.currentRenterSignal();
+        if (current && current.id === updated.id) {
+          this.saveCurrentRenter({ ...current, ...updated });
+        }
+      })
+    );
+  }
+
+  clearRentalDetails(id: number): Observable<Renter> {
+    return this.http.delete<Renter>(`${this.API_BASE_URL}/api/renter/${id}/rental`).pipe(
+      tap((updated) => {
+        const current = this.currentRenterSignal();
+        if (current && current.id === updated.id) {
+          this.saveCurrentRenter({ ...current, ...updated });
+        }
+      })
+    );
   }
 
   signIn(email: string, password: string): Observable<Renter> {

@@ -32,6 +32,7 @@ public class RentPlanSrvImpl implements RentPlanService {
         for (RentPlanData datum : rentPlanDataList) {
             RentPlan rp = new RentPlan();
             rp.setId(datum.getId());
+            rp.setRenterID(datum.getRenterID());
             rp.setVehicleID(datum.getVehicleID());
             rp.setStartRent(datum.getStartRent());
             rp.setEndRent(datum.getEndRent());
@@ -58,6 +59,7 @@ public class RentPlanSrvImpl implements RentPlanService {
             RentPlan rp = new RentPlan();
             RentPlanData datum = opt.get();
             rp.setId(datum.getId());
+            rp.setRenterID(datum.getRenterID());
             rp.setVehicleID(datum.getVehicleID());
             rp.setStartRent(datum.getStartRent());
             rp.setEndRent(datum.getEndRent());
@@ -75,6 +77,7 @@ public class RentPlanSrvImpl implements RentPlanService {
     public RentPlan addPlan(RentPlan rp) {
         logger.info("Adding new plan {}", rp.toString());
         RentPlanData datum = new RentPlanData();
+        datum.setRenterID(rp.getRenterID());
         datum.setVehicleID(rp.getVehicleID());
         datum.setStartRent(rp.getStartRent());
         datum.setEndRent(rp.getEndRent());
@@ -92,6 +95,7 @@ public class RentPlanSrvImpl implements RentPlanService {
 
         RentPlan rp = new RentPlan();
         rp.setId(datum.getId());
+        rp.setRenterID(datum.getRenterID());
         rp.setVehicleID(datum.getVehicleID());
         rp.setStartRent(datum.getStartRent());
         rp.setEndRent(datum.getEndRent());
@@ -111,6 +115,9 @@ public class RentPlanSrvImpl implements RentPlanService {
         }
 
         RentPlanData datum = opt.get();
+        if (rp.getRenterID() != null) {
+            datum.setRenterID(rp.getRenterID());
+        }
         if (rp.getVehicleID() != null) {
             datum.setVehicleID(rp.getVehicleID());
         }
@@ -131,7 +138,7 @@ public class RentPlanSrvImpl implements RentPlanService {
         }
         if (rp.getPayMode() != null) {
             datum.setPayMode(rp.getPayMode());
-        } ;
+        }
         return createRentPlanFromRepo(datum);
     }
 

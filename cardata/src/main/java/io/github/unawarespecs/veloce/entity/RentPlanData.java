@@ -23,6 +23,7 @@ public class RentPlanData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     Integer id;
+    Integer renterID;
     Integer vehicleID;
     Date startRent;
     Date endRent;

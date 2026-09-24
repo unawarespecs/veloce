@@ -7,5 +7,6 @@ public interface RenterService {
     Renter getRenter(Integer id) throws Exception;
     Renter addRenter(Renter r) throws Exception;
     Renter updateRenter(Renter r) throws Exception;
+    Renter clearRentalDetails(Integer id) throws Exception;
     void delete(Integer id) throws Exception;
 }

@@ -1,17 +1,83 @@
+@if (successMessage()) {
+<div class="alert alert-success">
+    <p>{{ successMessage() }}</p>
+</div>
+}
+
+@if (errorMessage()) {
+<div class="alert alert-error">
+    <p>{{ errorMessage() }}</p>
+</div>
+}
+
 @if (cart.items().length === 0) {
 <section class="empty-cart">
     <h2>Your cart is empty</h2>
-    <p>Select a vehicle from the fleet to start a reservation.</p><a href="/#fleet">Browse the Fleet</a>
+    <p>Select a vehicle from the fleet to start a reservation.</p>
+    <a href="/#fleet">Browse the Fleet</a>
 </section>
 } @else {
-<section class="cart-list">@for (vehicle of cart.items(); track vehicle.id) { <article class="cart-item"><img
-            [src]="vehicle.imagePath" [alt]="vehicle.name" />
-        <div><span>{{ vehicle.category }}</span>
+<section class="cart-list">
+    @for (vehicle of cart.items(); track vehicle.id) {
+    <article class="cart-item">
+        <img [src]="vehicle.imagePath" [alt]="vehicle.name" />
+        <div>
+            <span>{{ vehicle.category }}</span>
             <h2>{{ vehicle.name }}</h2>
-            <p>₱{{ vehicle.price | number }}/day · {{ vehicle.seats }} seats · {{ vehicle.transmission }}</p>
-        </div><button type="button" (click)="remove(vehicle.id)" aria-label="Remove vehicle">Remove</button>
-    </article> }<div class="cart-summary">
-        <div><span>Estimated total</span><strong>₱{{ cart.total() | number }}</strong></div><button type="button"
-            (click)="clear()">Clear cart</button>
-    </div><app-create-order /></section>
+            <p>₱{{ vehicle.dailyRate | number }}/day · {{ vehicle.seats }} seats · {{ vehicle.transmission }}</p>
+        </div>
+        <button type="button" (click)="remove(vehicle.id)" aria-label="Remove vehicle">Remove</button>
+    </article>
+    }
+
+    <div class="rental-options">
+        <h3>Rental Details</h3>
+        <div class="options-grid">
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input
+                    id="startDate"
+                    type="date"
+                    [ngModel]="cart.startDate()"
+                    (ngModelChange)="onStartDateChange($event)"
+                />
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input
+                    id="endDate"
+                    type="date"
+                    [ngModel]="cart.endDate()"
+                    (ngModelChange)="onEndDateChange($event)"
+                />
+            </div>
+            <div class="form-group">
+                <label for="payMode">Method of Payment</label>
+                <select
+                    id="payMode"
+                    [ngModel]="cart.payMode()"
+                    (ngModelChange)="onPayModeChange($event)"
+                >
+                    @for (mode of paymentModes; track mode) {
+                    <option [value]="mode">{{ mode }}</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-summary">
+        <div class="summary-breakdown">
+            <div><span>Rental duration</span><strong>{{ cart.daysRent() }} day(s)</strong></div>
+            <div><span>Daily rate</span><strong>₱{{ cart.items()[0].dailyRate | number }}</strong></div>
+            <div class="total-row"><span>Estimated total</span><strong>₱{{ cart.total() | number }}</strong></div>
+        </div>
+        <div class="summary-actions">
+            <button type="button" class="btn-clear" (click)="clear()">Clear cart</button>
+            <button type="button" class="btn-confirm" [disabled]="isSubmitting()" (click)="confirmRental()">
+                {{ isSubmitting() ? 'Processing...' : 'Confirm Reservation' }}
+            </button>
+        </div>
+    </div>
+</section>
 }

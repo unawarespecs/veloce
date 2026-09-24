@@ -3,7 +3,7 @@ export interface Renter {
     name: string;
     email: string;
     password: string;
-    rentPlanID: string;
-    rentedVehicleID: string;
-    vehicleName: string;
+    rentPlanID: number | string | null;
+    rentedVehicleID: number | string | null;
+    vehicleName: string | null;
 }

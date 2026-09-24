@@ -6,11 +6,17 @@
         <a href="#about">About</a>
     </div>
     <div class="desktop-actions">
-        <a class="button button-secondary" routerLink="/cart">Cart</a>
+        <a class="button button-secondary cart-link" routerLink="/cart">
+            Cart
+            @if (cart.count() > 0) {
+                <span class="cart-badge">{{ cart.count() }}</span>
+            }
+        </a>
         <a class="button button-primary" href="#booking">Book Now</a>
         @if (isAuthenticated()) {
             <span class="user-greeting">Hi, {{ currentRenter()?.name }}</span>
-            <button class="button button-secondary" (click)="signOut()">Sign Out</button>
+            <a class="button button-primary" routerLink="/orders">Current Rentals</a>
+            <a class="button button-secondary" (click)="signOut()">Sign Out</a>
         } @else {
             <a class="button button-primary" routerLink="/sign-in">Sign In</a>
         }
@@ -26,11 +32,17 @@
     <a href="#locations" (click)="closeMenu()">Locations</a>
     <a href="#services" (click)="closeMenu()">Services</a>
     <a href="#about" (click)="closeMenu()">About</a>
-    <a class="button button-secondary" routerLink="/cart" (click)="closeMenu()">Cart</a>
+    <a class="button button-secondary cart-link" routerLink="/cart" (click)="closeMenu()">
+        Cart
+        @if (cart.count() > 0) {
+            <span class="cart-badge">{{ cart.count() }}</span>
+        }
+    </a>
     <a class="button button-primary" href="#booking" (click)="closeMenu()">Book Now <app-arrow-right /></a>
     @if (isAuthenticated()) {
         <span class="user-greeting">Hi, {{ currentRenter()?.name }}</span>
-        <button class="button button-secondary" (click)="signOut()">Sign Out</button>
+        <a class="button button-primary" routerLink="/orders">Current Rentals</a>
+        <a class="button button-secondary" (click)="signOut()">Sign Out</a>
     } @else {
         <a class="button button-primary" routerLink="/sign-in" (click)="closeMenu()">Sign In<app-arrow-right /></a>
     }
