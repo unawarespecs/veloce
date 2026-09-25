@@ -13,7 +13,7 @@ describe('CartService', () => {
         dailyRate: 2500,
         seats: 5,
         transmission: 'Automatic',
-        fuel: 'Gasoline',
+        fuel: 'Petrol',
         imagePath: '/images/sedan.jpg',
     };
 
@@ -25,7 +25,7 @@ describe('CartService', () => {
         dailyRate: 4000,
         seats: 7,
         transmission: 'Automatic',
-        fuel: 'Diesel',
+        fuel: 'Petrol',
         imagePath: '/images/suv.jpg',
     };
 
