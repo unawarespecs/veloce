@@ -1,3 +1,4 @@
+<script src="home.component.ts"></script>
 <app-header></app-header>
 <main>
     <section class="hero" id="hero">
@@ -54,7 +55,10 @@
         </div>
     </section>
 
-    <app-product-list />
+    <app-product-list [maxVehicles]="9" />
+    <div class="fleet-more">
+        <a href="/fleet">View All {{ fleet().length || "" }} Vehicles <app-arrow-right /></a>
+    </div>
 
     <section class="band" id="services">
         <div class="section-wrap">
@@ -63,13 +67,11 @@
             <div class="steps">@for (step of [{
                 num: '01',
                 title: 'Choose Your Vehicle',
-                desc: 'Browse our curated fleet of 240+ premium and exotic cars. Filter by category, location, or
-                availability.'
+                desc: 'Browse our curated fleet of 240+ premium and exotic cars. Filter by category, location, or availability.'
                 }, {
                 num: '02',
                 title: 'Select Dates & Location',
-                desc: 'Pick your pickup and return dates. Choose from our Metro Manila hubs, including NAIA terminals
-                and key city districts.'
+                desc: 'Pick your pickup and return dates. Choose from our Metro Manila hubs, including NAIA terminals and key city districts.'
                 }, {
                 num: '03',
                 title: 'Confirm & Drive',
@@ -122,8 +124,7 @@
             <p>From the moment you book to the moment you return the keys, every touchpoint is handled with precision
                 and
                 discretion. Our concierge team is available
-                24/7.</p>@for (service of ['Complimentary NAIA terminal delivery', 'Dedicated concierge support', 'Full
-            insurance coverage', 'Flexible cancellation policy']; track service) {
+                24/7.</p>@for (service of ['Complimentary NAIA terminal delivery', 'Dedicated concierge support', 'Full insurance coverage', 'Flexible cancellation policy']; track service) {
             <span class="service-item"><i></i>{{ service }}</span>
             }
             <button class="button button-primary">Learn More
@@ -156,7 +157,7 @@
                 <h2>Ready to Drive?</h2>
                 <p>Join 12,000+ drivers across Metro Manila who choose Veloce.</p>
             </div>
-            <a class="button cta-button" href="#fleet">Browse the Fleet
+            <a class="button cta-button" href="/fleet">Browse the Fleet
                 <app-arrow-right />
             </a>
         </div>

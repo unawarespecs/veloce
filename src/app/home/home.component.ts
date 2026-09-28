@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ProductList } from '../product-list/product-list.component';
 import { ArrowRight } from '../icon/arrow-right.component';
 import { ChevronDown } from '../icon/chevron-down.component';
 import { StarIcon } from '../icon/star-icon.component';
 import { Footer } from '../footer/footer.component';
 import { Header } from '../header/header.component';
+import { VehicleService } from '../service/vehicle.service';
 
 @Component({
     selector: 'app-home',
@@ -18,6 +19,8 @@ export class Home {
     readonly location = signal('Makati - BGC / Ortigas');
     readonly activeTestimonial = signal(0);
     readonly bookingMessage = signal('');
+    private readonly productService = inject(VehicleService);
+    readonly fleet = this.productService.fleet;
 
     readonly locations = [
         { city: 'Makati', airport: 'BGC / Ortigas', count: 54, available: true },

@@ -1,4 +1,4 @@
-import { Component, computed, signal, inject } from '@angular/core';
+import { Component, computed, input, signal, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { ArrowRight } from '../icon/arrow-right.component';
 import { CartService } from '../service/cart.service';
@@ -13,12 +13,15 @@ import { ProductDetails } from '../product-details/product-details.component';
     styleUrl: './product-list.component.css',
 })
 export class ProductList {
+    readonly maxVehicles = input<number>();
     readonly categories = [
         'All',
         'Sedan',
         'SUV',
         'Truck',
         'Van',
+        'Sports',
+        'Luxury'
     ];
     readonly activeCategory = signal('All');
     readonly hoveredId = signal<number | null>(null);
@@ -34,6 +37,9 @@ export class ProductList {
         this.activeCategory() === 'All'
             ? this.fleet()
             : this.fleet().filter((vehicle) => vehicle.category === this.activeCategory()),
+    );
+    readonly displayedFleet = computed(() =>
+        this.filteredFleet().slice(0, this.maxVehicles()),
     );
 
     selectCategory(category: string): void {

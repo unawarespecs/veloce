@@ -540,3 +540,27 @@ div.gallery-item div.desc {
     padding: 15px;
     text-align: center;
 }
+
+.fleet-more {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.fleet-more a {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    border: 1px solid var(--border);
+    color: var(--muted-foreground);
+    font:
+        600 12px 'Barlow Condensed',
+        sans-serif;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+app-product-list {
+    display: block;
+    width: min(1300px, 100%);
+    margin: 0 auto;
+}

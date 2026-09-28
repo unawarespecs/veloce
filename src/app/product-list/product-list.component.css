@@ -164,24 +164,7 @@
     border-color: var(--primary);
     color: var(--primary);
 }
-.fleet-more {
-    margin-top: 48px;
-    text-align: center;
-}
-.fleet-more a {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 28px;
-    border: 1px solid var(--border);
-    color: var(--muted-foreground);
-    font:
-        600 12px 'Barlow Condensed',
-        sans-serif;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-    text-transform: uppercase;
-}
+
 @media (max-width: 800px) {
     .fleet-heading {
         display: block;
@@ -199,3 +182,4 @@
         grid-template-columns: 1fr;
     }
 }
+

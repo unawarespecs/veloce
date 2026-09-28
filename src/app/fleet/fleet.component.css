@@ -1,0 +1,28 @@
+.fleet-page {
+    min-height: 100vh;
+    padding: 50px 24px 80px;
+    background: var(--background);
+    color: var(--foreground);
+}
+
+.fleet-heading {
+    display: block;
+    width: min(1300px, 100%);
+    margin: 0 auto;
+}
+
+.fleet-heading {
+    margin-bottom: 40px;
+}
+
+.fleet-heading p {
+    color: var(--primary);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+.fleet-heading h1 {
+    margin: 0;
+    font-size: clamp(56px, 9vw, 90px);
+}

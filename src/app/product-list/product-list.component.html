@@ -17,14 +17,14 @@
             <h3>Loading our fleet</h3>
             <p>We are retrieving the latest available vehicles. Please wait a moment.</p>
         </div>
-    } @else if (fleetStatus() === 'error' || filteredFleet().length === 0) {
+    } @else if (fleetStatus() === 'error' || displayedFleet().length === 0) {
         <div class="fleet-message" role="alert">
             <h3>Fleet currently unavailable</h3>
             <p>We are unable to show available vehicles right now. Check back later or contact us for assistance.</p>
         </div>
     } @else {
         <div class="fleet-grid">
-            @for (vehicle of filteredFleet(); track vehicle.id) {
+            @for (vehicle of displayedFleet(); track vehicle.id) {
                 <article class="vehicle" (mouseenter)="hoveredId.set(vehicle.id)" (mouseleave)="hoveredId.set(null)" (click)="openDetails(vehicle)">
                     @if (vehicle.tag) {
                         <span class="vehicle-tag">{{ vehicle.tag }}</span>
@@ -51,9 +51,6 @@
             }
         </div>
     }
-    <div class="fleet-more">
-        <a href="#booking">View All 50+ Vehicles <app-arrow-right /></a>
-    </div>
 
     @if (selectedVehicle()) {
         <app-product-details
