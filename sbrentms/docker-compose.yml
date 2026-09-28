@@ -1,36 +1,31 @@
-version: "3.8"
 services:
-  empldbsrvr:
-    image: mysql:8.0
-    container_name: mysql1
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: veloce-car-rental
-      MYSQL_USER: mysqluser
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
-      - "33060:33060"
-    volumes:
-      - ./db:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - emplnetwork
+    empldbsrvr:
+        image: mysql:8.0
+        container_name: mysql-veloce
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD is required}
+            MYSQL_DATABASE: ${MYSQL_DATABASE:-veloce-car-rental}
+            MYSQL_USER: ${MYSQL_USER:-mysqluser}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD:?MYSQL_PASSWORD is required}
+        ports:
+            - "3306:3306"
+            - "33060:33060"
+        volumes:
+            - ./db:/var/lib/mysql
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+        networks:
+            - emplnetwork
 
-  springboot-app:
-    image: emplms
-    container_name: veloce-spring-boot-server
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://empldbsrvr:3306/veloce-car-rental
-      SPRING_DATASOURCE_USERNAME: mysqluser
-      SPRING_DATASOURCE_PASSWORD: password
-    ports:
-      - "8080:8080"
-    depends_on:
-      - empldbsrvr
-    networks:
-      - emplnetwork
-
-networks:
-  emplnetwork:
-    driver: bridge
+    springboot-app:
+        image: rentms
+        container_name: veloce-spring-boot-server
+        environment:
+            SPRING_DATASOURCE_URL: jdbc:mysql://empldbsrvr:3306/${MYSQL_DATABASE:-veloce-car-rental}
+            SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-mysqluser}
+            SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:?MYSQL_PASSWORD is required}
+        ports:
+            - "8080:8080"
+        depends_on:
+            - empldbsrvr
+        networks:
+            - emplnetwork

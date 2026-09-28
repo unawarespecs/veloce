@@ -1,42 +1,42 @@
-<section class="orders-page">
+<app-header></app-header>
+<main class="orders-page">
     <div class="orders-heading">
-        <p class="eyebrow">Your reservations</p>
+        <p>Your reservations</p>
         <h1>Current rentals</h1>
     </div>
 
     @if (successMessage()) {
-        <p class="orders-message success" role="status">{{ successMessage() }}</p>
+    <p class="orders-message success" role="status">{{ successMessage() }}</p>
     }
 
     @if (errorMessage()) {
-        <p class="orders-message error" role="alert">{{ errorMessage() }}</p>
+    <p class="orders-message error" role="alert">{{ errorMessage() }}</p>
     }
 
     @if (!currentRenter()) {
-        <div class="orders-empty">
-            <h2>Sign in to view your rentals</h2>
-            <p>Your current reservations are available after you sign in.</p>
-        </div>
+    <div class="orders-empty">
+        <h2>Sign in to view your rentals</h2>
+        <p>Your current reservations are available after you sign in.</p>
+    </div>
     } @else if (isLoading()) {
-        <div class="orders-empty" role="status">
-            <h2>Loading your rentals</h2>
-            <p>We are retrieving your current reservations.</p>
-        </div>
+    <div class="orders-empty" role="status">
+        <h2>Loading your rentals</h2>
+        <p>We are retrieving your current reservations.</p>
+    </div>
     } @else if (orders().length === 0) {
-        <div class="orders-empty">
-            <h2>No current rentals</h2>
-            <p>You do not have any active reservations right now.</p>
-        </div>
+    <div class="orders-empty">
+        <h2>No current rentals</h2>
+        <p>You do not have any active reservations right now.</p>
+    </div>
     } @else {
-        <div class="orders-list">
-            @for (order of orders(); track order.plan.id) {
-                <app-order-items
-                    [rentPlan]="order.plan"
-                    [vehicleName]="order.vehicleName"
-                    [vehicleImage]="order.vehicleImage"
-                    (cancel)="cancel(order.plan)"
-                />
-            }
-        </div>
+    <div class="orders-list">
+        @for (order of orders(); track order.plan.id) {
+        <app-order-items [rentPlan]="order.plan" [vehicleName]="order.vehicleName" [vehicleImage]="order.vehicleImage"
+            (cancel)="cancel(order.plan)" />
+        }
+    </div>
     }
-</section>
+</main>
+<footer>
+    <app-footer />
+</footer>

@@ -7,7 +7,7 @@ import { RenterService } from '../service/renter.service';
   selector: 'app-sign-in',
   standalone: true,
   imports: [FormsModule, RouterLink],
-  templateUrl: './sign-in.component.html',
+  templateUrl: './sign-in.new.component.html',
   styleUrl: './sign-in.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

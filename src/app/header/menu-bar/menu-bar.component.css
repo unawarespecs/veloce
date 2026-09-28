@@ -58,6 +58,12 @@
     border: none;
 }
 
+.button-primary:hover,
+.button-primary:focus-visible {
+    background: var(--primary-hovered);
+    transition: background-color 0.5s;
+}
+
 .cart-link {
     position: relative;
 }

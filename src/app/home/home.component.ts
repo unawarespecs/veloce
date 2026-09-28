@@ -4,10 +4,11 @@ import { ArrowRight } from '../icon/arrow-right.component';
 import { ChevronDown } from '../icon/chevron-down.component';
 import { StarIcon } from '../icon/star-icon.component';
 import { Footer } from '../footer/footer.component';
+import { Header } from '../header/header.component';
 
 @Component({
     selector: 'app-home',
-    imports: [ProductList, ArrowRight, ChevronDown, StarIcon, Footer],
+    imports: [ProductList, ArrowRight, ChevronDown, StarIcon, Footer, Header],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
 })

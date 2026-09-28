@@ -63,7 +63,6 @@ Thumbs.db
 *.war
 *.nar
 *.ear
-*.zip
 *.tar.gz
 *.rar
 
@@ -73,6 +72,7 @@ replay_pid*
 
 # Env variables
 .env*
+!.env.example
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -91,9 +91,7 @@ target/
 
 ### Eclipse ###
 .apt_generated
-.classpath
 .factorypath
-.project
 .settings
 .springBeans
 .sts4-cache

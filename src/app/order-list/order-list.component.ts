@@ -4,10 +4,12 @@ import { RentPlan } from '../model/rent-plan';
 import { RentPlanService } from '../service/rent-plan.service';
 import { RenterService } from '../service/renter.service';
 import { VehicleService } from '../service/vehicle.service';
+import { Header } from '../header/header.component';
+import { Footer } from '../footer/footer.component';
 
 @Component({
     selector: 'app-order-list',
-    imports: [OrderItems],
+    imports: [OrderItems, Header, Footer],
     templateUrl: './order-list.component.html',
     styleUrl: './order-list.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

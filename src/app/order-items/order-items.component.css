@@ -6,7 +6,6 @@
     padding: 1.5rem;
     color: var(--card-foreground);
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
     background: var(--card);
 }
 
@@ -44,18 +43,34 @@
 }
 
 .cancel-button {
-    border: 1px solid #ff6464;
-    border-radius: 0.25rem;
-    padding: 0.7rem 1rem;
-    color: #ff9292;
-    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    opacity: 1 !important;
+    font:
+        600 16px/1 'Barlow Condensed',
+        sans-serif !important;
+    color: var(--primary-foreground) !important;
+    background: var(--primary);
     cursor: pointer;
 }
+
+/*.cancel-button {*/
+/*    border: 1px solid #ff6464;*/
+/*    border-radius: 0.25rem;*/
+/*    padding: 0.7rem 1rem;*/
+/*    color: #ff9292;*/
+/*    background: transparent;*/
+/*    cursor: pointer;*/
+/*}*/
 
 .cancel-button:hover,
 .cancel-button:focus-visible {
     color: #fff;
-    background: var(--primary);
+    background: var(--primary-hovered);
+    transition: background-color 0.5s;
     border-color: var(--primary);
 }
 
@@ -72,4 +87,9 @@
     .order-total {
         text-align: left;
     }
+}
+
+.order-details h2 {
+    font-size: 22px;
+    font-weight: bold;
 }
