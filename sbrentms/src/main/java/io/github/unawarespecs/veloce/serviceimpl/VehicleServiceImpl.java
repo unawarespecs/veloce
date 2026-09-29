@@ -5,6 +5,7 @@ import io.github.unawarespecs.veloce.enums.VehicleCategoryType;
 import io.github.unawarespecs.veloce.model.Vehicle;
 import io.github.unawarespecs.veloce.repository.VehicleDataRepository;
 import io.github.unawarespecs.veloce.service.VehicleService;
+import io.github.unawarespecs.veloce.transform.TransformVehicleService;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,35 +19,22 @@ import java.util.Optional;
 public class VehicleServiceImpl implements VehicleService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    VehicleDataRepository vdr;
+    VehicleDataRepository vehicleDataRepository;
+    TransformVehicleService transformVehicleService;
 
-    public VehicleServiceImpl(VehicleDataRepository vdr) {
-        this.vdr = vdr;
+    public VehicleServiceImpl(VehicleDataRepository vdr, TransformVehicleService tvs) {
+        this.vehicleDataRepository = vdr;
+        this.transformVehicleService = tvs;
     }
 
     @Override
     public Vehicle[] getVehicles() {
         List<VehicleData> vehicleData = new ArrayList<>();
         List<Vehicle> vehicles = new ArrayList<>();
-        vdr.findAll().forEach(vehicleData::add);
+        vehicleDataRepository.findAll().forEach(vehicleData::add);
 
         for (VehicleData datum : vehicleData) {
-            Vehicle v = new Vehicle();
-
-            v.setId(datum.getId());
-            v.setBrand(datum.getBrand());
-            v.setModel(datum.getModel());
-            v.setName(datum.getName());
-            v.setDescription(datum.getDescription());
-            v.setCategory(datum.getCategory());
-            v.setPrice(datum.getPrice());
-            v.setDailyRate(datum.getDailyRate());
-            v.setSeats(datum.getSeats());
-            v.setTransmission(datum.getTransmission());
-            v.setFuel(datum.getFuel());
-            v.setImagePath(datum.getImagePath());
-            v.setTag(datum.getTag());
-
+            Vehicle v = transformVehicleService.transformFromVehicleData(datum);
             logger.debug(v.toString());
             vehicles.add(v);
         }
@@ -62,25 +50,11 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Vehicle getVehicle(Integer id) {
         logger.info("Getting info for vehicle {}", id);
-        Optional<VehicleData> opt = vdr.findById(id);
+        Optional<VehicleData> opt = vehicleDataRepository.findById(id);
         if (opt.isPresent()) {
             logger.info("Found!");
-            Vehicle v = new Vehicle();
             VehicleData datum = opt.get();
-            v.setId(datum.getId());
-            v.setCategory(datum.getCategory());
-            v.setBrand(datum.getBrand());
-            v.setModel(datum.getModel());
-            v.setPrice(datum.getPrice());
-            v.setDailyRate(datum.getDailyRate());
-            v.setName(datum.getName());
-            v.setDescription(datum.getDescription());
-            v.setSeats(datum.getSeats());
-            v.setTransmission(datum.getTransmission());
-            v.setFuel(datum.getFuel());
-            v.setImagePath(datum.getImagePath());
-            v.setTag(datum.getTag());
-            return v;
+            return transformVehicleService.transformFromVehicleData(datum);
         }
         logger.error("Error: Can't locate vehicle with ID {}", id);
         return null;
@@ -89,47 +63,20 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Vehicle addVehicle(Vehicle v) {
         logger.info("Adding new vehicle {}", v.toString());
-        VehicleData datum = new VehicleData();
-        datum.setCategory(v.getCategory());
-        datum.setBrand(v.getBrand());
-        datum.setModel(v.getModel());
-        datum.setPrice(v.getPrice());
-        datum.setDailyRate(v.getDailyRate());
-        datum.setName(v.getName());
-        datum.setDescription(v.getDescription());
-        datum.setSeats(v.getSeats());
-        datum.setTransmission(v.getTransmission());
-        datum.setFuel(v.getFuel());
-        datum.setImagePath(v.getImagePath());
-        datum.setTag(v.getTag());
+        VehicleData datum = transformVehicleService.transformFromBaseVehicle(v);
         logger.info("Added new vehicle {} to database", v);
         return createVehicleFromRepo(datum);
     }
 
     @NonNull
     private Vehicle createVehicleFromRepo(VehicleData datum) {
-        VehicleData savedDatum = vdr.save(datum);
-
-        Vehicle nv = new Vehicle();
-        nv.setId(savedDatum.getId());
-        nv.setCategory(savedDatum.getCategory());
-        nv.setBrand(savedDatum.getBrand());
-        nv.setModel(savedDatum.getModel());
-        nv.setPrice(savedDatum.getPrice());
-        nv.setDailyRate(savedDatum.getDailyRate());
-        nv.setName(savedDatum.getName());
-        nv.setDescription(savedDatum.getDescription());
-        nv.setSeats(savedDatum.getSeats());
-        nv.setTransmission(savedDatum.getTransmission());
-        nv.setFuel(savedDatum.getFuel());
-        nv.setImagePath(savedDatum.getImagePath());
-        nv.setTag(savedDatum.getTag());
-        return nv;
+        VehicleData savedDatum = vehicleDataRepository.save(datum);
+        return transformVehicleService.transformFromVehicleData(savedDatum);
     }
 
     @Override
     public Vehicle updateVehicle(Vehicle v) {
-        Optional<VehicleData> opt = vdr.findById(v.getId());
+        Optional<VehicleData> opt = vehicleDataRepository.findById(v.getId());
         if (opt.isEmpty()) {
             logger.error("Error: Can't locate vehicle with ID {} for updating", v.getId());
             return null;
@@ -178,10 +125,10 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void delete(Integer id) {
         logger.info("Deleting vehicle {}", id);
-        Optional<VehicleData> opt = vdr.findById(id);
+        Optional<VehicleData> opt = vehicleDataRepository.findById(id);
         if (opt.isPresent()) {
             VehicleData datum = opt.get();
-            vdr.delete(datum);
+            vehicleDataRepository.delete(datum);
             logger.info("Deleted {}!", datum);
         } else {
             logger.error("Error: Can't delete vehicle with ID {}", id);
@@ -189,6 +136,6 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     public List<VehicleData> findVehiclesByType(VehicleCategoryType cat) {
-        return vdr.findByCategory(cat);
+        return vehicleDataRepository.findByCategory(cat);
     }
 }
