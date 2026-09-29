@@ -4,12 +4,12 @@ import { ArrowRight } from '../icon/arrow-right.component';
 import { CartService } from '../service/cart.service';
 import { VehicleService } from '../service/vehicle.service';
 import { Vehicle } from '../model/vehicle';
-import { ProductDetails } from '../product-details/product-details.component';
+import { ProductDetailsModal } from '../product-details-modal/product-details-modal.component';
 import { ProductDetailsStandalone } from '../product-details-standalone/product-details-standalone.component';
 
 @Component({
     selector: 'app-product-list',
-    imports: [ArrowRight, DecimalPipe, ProductDetails, ProductDetailsStandalone],
+    imports: [ArrowRight, DecimalPipe, ProductDetailsModal, ProductDetailsStandalone],
     templateUrl: './product-list.component.html',
     styleUrl: './product-list.component.css',
 })

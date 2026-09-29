@@ -2,6 +2,7 @@ package io.github.unawarespecs.veloce.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.unawarespecs.veloce.enums.ModeOfPayment;
+import io.github.unawarespecs.veloce.enums.RentPlanStatusType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -31,6 +32,7 @@ public class RentPlanData {
     Double totalPrice;
     String customerName;
     ModeOfPayment payMode;
+    RentPlanStatusType status;
 
     @UpdateTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")

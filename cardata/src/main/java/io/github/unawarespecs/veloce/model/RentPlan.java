@@ -1,6 +1,7 @@
 package io.github.unawarespecs.veloce.model;
 
 import io.github.unawarespecs.veloce.enums.ModeOfPayment;
+import io.github.unawarespecs.veloce.enums.RentPlanStatusType;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,4 +17,5 @@ public class RentPlan {
     private Double totalPrice;
     private String customerName;
     private ModeOfPayment payMode;
+    private RentPlanStatusType status;
 }

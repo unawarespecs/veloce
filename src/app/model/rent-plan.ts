@@ -8,4 +8,5 @@ export interface RentPlan {
     totalPrice: number;
     customerName: string;
     payMode: string;
+    status?: string;
 }

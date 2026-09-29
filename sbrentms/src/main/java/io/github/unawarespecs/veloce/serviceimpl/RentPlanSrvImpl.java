@@ -40,6 +40,7 @@ public class RentPlanSrvImpl implements RentPlanService {
             rp.setDaysRent(datum.getDaysRent());
             rp.setCustomerName(datum.getCustomerName());
             rp.setPayMode(datum.getPayMode());
+            rp.setStatus(datum.getStatus());
             rentPlans.add(rp);
         }
 
@@ -67,6 +68,7 @@ public class RentPlanSrvImpl implements RentPlanService {
             rp.setDaysRent(datum.getDaysRent());
             rp.setCustomerName(datum.getCustomerName());
             rp.setPayMode(datum.getPayMode());
+            rp.setStatus(datum.getStatus());
             return rp;
         }
         logger.error("Error: Can't locate plan with ID {}", id);
@@ -85,6 +87,7 @@ public class RentPlanSrvImpl implements RentPlanService {
         datum.setCustomerName(rp.getCustomerName());
         datum.setDaysRent(rp.getDaysRent());
         datum.setPayMode(rp.getPayMode());
+        datum.setStatus(rp.getStatus());
         logger.info("Added plan {} to database", rp);
         return createRentPlanFromRepo(datum);
     }
@@ -103,6 +106,7 @@ public class RentPlanSrvImpl implements RentPlanService {
         rp.setDaysRent(datum.getDaysRent());
         rp.setCustomerName(datum.getCustomerName());
         rp.setPayMode(datum.getPayMode());
+        rp.setStatus(datum.getStatus());
         return rp;
     }
 
@@ -139,6 +143,9 @@ public class RentPlanSrvImpl implements RentPlanService {
         if (rp.getPayMode() != null) {
             datum.setPayMode(rp.getPayMode());
         }
+        if (rp.getStatus() != null) {
+            datum.setStatus(rp.getStatus());
+        }
         return createRentPlanFromRepo(datum);
     }
 
@@ -153,5 +160,13 @@ public class RentPlanSrvImpl implements RentPlanService {
         } else {
             logger.error("Error: Can't delete plan with ID {}", id);
         }
+    }
+
+    @Override
+    public RentPlan[] listByRenterIdAndVehicleId(int renterID, int vehicleID) {
+        List<RentPlanData> rentPlanData = new ArrayList<>();
+        List<RentPlan> rentPlans = new ArrayList<>();
+//        rpdr.findAllByRenterIDAndVehicleID()
+        return new RentPlan[0];
     }
 }

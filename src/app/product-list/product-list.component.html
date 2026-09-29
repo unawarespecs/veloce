@@ -53,7 +53,7 @@
     }
 
     @if (selectedVehicle()) {
-        <app-product-details
+        <app-product-details-modal
             [vehicle]="selectedVehicle()"
             (close)="closeDetails()"
             (reserve)="reserve($event)"

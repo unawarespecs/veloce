@@ -8,4 +8,5 @@ public interface RentPlanService {
     RentPlan addPlan(RentPlan rp) throws Exception;
     RentPlan updatePlan(RentPlan rp) throws Exception;
     void delete(Integer id) throws Exception;
+    RentPlan[] listByRenterIdAndVehicleId(int renterID, int vehicleID);
 }

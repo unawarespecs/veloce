@@ -15,13 +15,13 @@ import { VehicleService } from '../service/vehicle.service';
 import { ArrowRight } from '../icon/arrow-right.component';
 
 @Component({
-    selector: 'app-product-details',
+    selector: 'app-product-details-modal',
     imports: [DecimalPipe, ArrowRight],
-    templateUrl: './product-details.component.html',
-    styleUrl: './product-details.component.css',
+    templateUrl: './product-details-modal.component.html',
+    styleUrl: './product-details-modal.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductDetails {
+export class ProductDetailsModal {
     readonly vehicle = input<Vehicle | null>(null);
     readonly close = output<void>();
     readonly reserve = output<Vehicle>();

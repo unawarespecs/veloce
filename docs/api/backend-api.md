@@ -5,9 +5,9 @@ This document describes the backend endpoints exposed by the Spring Boot applica
 ## Base URL and CORS
 
 - API endpoints are exposed under:
-  - `/api/rentplan`
-  - `/api/renter`
-  - `/api/vehicle`
+    - `/api/rentplan`
+    - `/api/renter`
+    - `/api/vehicle`
 - CORS is configured to allow requests from `http://localhost:4200`.
 - Successful requests generally return `200 OK` with the created/updated entity or array in the response body.
 - Exceptions are returned as `500 Internal Server Error` with the exception object or message in the response body.
@@ -20,16 +20,16 @@ This document describes the backend endpoints exposed by the Spring Boot applica
 
 - `200 OK` for list, get, create, update, and delete operations where the operation completes without exception.
 - Response body contains either:
-  - an array of entities for list endpoints
-  - a single entity for get/create/update endpoints
-  - `null` for delete endpoints
+    - an array of entities for list endpoints
+    - a single entity for get/create/update endpoints
+    - `null` for delete endpoints
 
 ### Errors
 
 - `500 Internal Server Error` is returned when the controller catches an exception.
 - Error body is typically either:
-  - the exception instance itself
-  - `e.getMessage()`
+    - the exception instance itself
+    - `e.getMessage()`
 
 ---
 
@@ -39,15 +39,15 @@ This document describes the backend endpoints exposed by the Spring Boot applica
 
 ```json
 {
-  "id": 1,
-  "renterID": 10,
-  "vehicleID": 3,
-  "startRent": "2026-09-25T00:00:00.000Z",
-  "endRent": "2026-09-30T00:00:00.000Z",
-  "daysRent": 5,
-  "totalPrice": 2500.0,
-  "customerName": "Jane Doe",
-  "payMode": "Cash"
+    "id": 1,
+    "renterID": 10,
+    "vehicleID": 3,
+    "startRent": "2026-09-25T00:00:00.000Z",
+    "endRent": "2026-09-30T00:00:00.000Z",
+    "daysRent": 5,
+    "totalPrice": 2500.0,
+    "customerName": "Jane Doe",
+    "payMode": "Cash"
 }
 ```
 
@@ -64,13 +64,13 @@ Allowed payment values:
 
 ```json
 {
-  "id": 1,
-  "name": "Jane Doe",
-  "email": "jane@example.com",
-  "password": "secret123",
-  "rentPlanID": 10,
-  "rentedVehicleID": 3,
-  "vehicleName": "Toyota Vios"
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "password": "secret123",
+    "rentPlanID": 10,
+    "rentedVehicleID": 3,
+    "vehicleName": "Toyota Vios"
 }
 ```
 
@@ -78,19 +78,19 @@ Allowed payment values:
 
 ```json
 {
-  "id": 1,
-  "brand": "Toyota",
-  "model": "Vios",
-  "price": 1200000.0,
-  "name": "Toyota Vios",
-  "description": "Compact sedan for city drives",
-  "category": "Sedan",
-  "dailyRate": 1800.0,
-  "seats": 5,
-  "transmission": "Automatic",
-  "fuel": "Petrol",
-  "imagePath": "/images/toyota-vios.jpg",
-  "tag": "Popular"
+    "id": 1,
+    "brand": "Toyota",
+    "model": "Vios",
+    "price": 1200000.0,
+    "name": "Toyota Vios",
+    "description": "Compact sedan for city drives",
+    "category": "Sedan",
+    "dailyRate": 1800.0,
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "imagePath": "/images/toyota-vios.jpg",
+    "tag": "Popular"
 }
 ```
 
@@ -122,19 +122,24 @@ GET /api/rentplan
 
 ```json
 [
-  {
-    "id": 1,
-    "renterID": 10,
-    "vehicleID": 3,
-    "startRent": "2026-09-25T00:00:00.000Z",
-    "endRent": "2026-09-30T00:00:00.000Z",
-    "daysRent": 5,
-    "totalPrice": 2500.0,
-    "customerName": "Jane Doe",
-    "payMode": "Cash"
-  }
+    {
+        "id": 1,
+        "renterID": 10,
+        "vehicleID": 3,
+        "startRent": "2026-09-25T00:00:00.000Z",
+        "endRent": "2026-09-30T00:00:00.000Z",
+        "daysRent": 5,
+        "totalPrice": 2500.0,
+        "customerName": "Jane Doe",
+        "payMode": "Cash",
+        "status": "Pending"
+    }
 ]
 ```
+
+Rent plan enumerations:
+
+- `status`: `Pending`, `Rented`, `Complete`, `Cancelled`, `Unknown`
 
 ### GET /api/rentplan/{id}
 
@@ -150,15 +155,15 @@ GET /api/rentplan/1
 
 ```json
 {
-  "id": 1,
-  "renterID": 10,
-  "vehicleID": 3,
-  "startRent": "2026-09-25T00:00:00.000Z",
-  "endRent": "2026-09-30T00:00:00.000Z",
-  "daysRent": 5,
-  "totalPrice": 2500.0,
-  "customerName": "Jane Doe",
-  "payMode": "Cash"
+    "id": 1,
+    "renterID": 10,
+    "vehicleID": 3,
+    "startRent": "2026-09-25T00:00:00.000Z",
+    "endRent": "2026-09-30T00:00:00.000Z",
+    "daysRent": 5,
+    "totalPrice": 2500.0,
+    "customerName": "Jane Doe",
+    "payMode": "Cash"
 }
 ```
 
@@ -170,14 +175,14 @@ Creates a new rent plan.
 
 ```json
 {
-  "renterID": 10,
-  "vehicleID": 3,
-  "startRent": "2026-09-25T00:00:00.000Z",
-  "endRent": "2026-09-30T00:00:00.000Z",
-  "daysRent": 5,
-  "totalPrice": 2500.0,
-  "customerName": "Jane Doe",
-  "payMode": "Cash"
+    "renterID": 10,
+    "vehicleID": 3,
+    "startRent": "2026-09-25T00:00:00.000Z",
+    "endRent": "2026-09-30T00:00:00.000Z",
+    "daysRent": 5,
+    "totalPrice": 2500.0,
+    "customerName": "Jane Doe",
+    "payMode": "Cash"
 }
 ```
 
@@ -193,15 +198,15 @@ Updates an existing rent plan.
 
 ```json
 {
-  "id": 1,
-  "renterID": 10,
-  "vehicleID": 3,
-  "startRent": "2026-09-25T00:00:00.000Z",
-  "endRent": "2026-10-02T00:00:00.000Z",
-  "daysRent": 7,
-  "totalPrice": 3500.0,
-  "customerName": "Jane Doe",
-  "payMode": "Credit"
+    "id": 1,
+    "renterID": 10,
+    "vehicleID": 3,
+    "startRent": "2026-09-25T00:00:00.000Z",
+    "endRent": "2026-10-02T00:00:00.000Z",
+    "daysRent": 7,
+    "totalPrice": 3500.0,
+    "customerName": "Jane Doe",
+    "payMode": "Credit"
 }
 ```
 
@@ -242,15 +247,15 @@ GET /api/renter
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Jane Doe",
-    "email": "jane@example.com",
-    "password": "secret123",
-    "rentPlanID": 10,
-    "rentedVehicleID": 3,
-    "vehicleName": "Toyota Vios"
-  }
+    {
+        "id": 1,
+        "name": "Jane Doe",
+        "email": "jane@example.com",
+        "password": "secret123",
+        "rentPlanID": 10,
+        "rentedVehicleID": 3,
+        "vehicleName": "Toyota Vios"
+    }
 ]
 ```
 
@@ -266,12 +271,12 @@ Creates a new renter.
 
 ```json
 {
-  "name": "Jane Doe",
-  "email": "jane@example.com",
-  "password": "secret123",
-  "rentPlanID": 10,
-  "rentedVehicleID": 3,
-  "vehicleName": "Toyota Vios"
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "password": "secret123",
+    "rentPlanID": 10,
+    "rentedVehicleID": 3,
+    "vehicleName": "Toyota Vios"
 }
 ```
 
@@ -287,13 +292,13 @@ Updates an existing renter.
 
 ```json
 {
-  "id": 1,
-  "name": "Jane Smith",
-  "email": "jane.new@example.com",
-  "password": "new-secret",
-  "rentPlanID": 11,
-  "rentedVehicleID": 5,
-  "vehicleName": "Honda Civic"
+    "id": 1,
+    "name": "Jane Smith",
+    "email": "jane.new@example.com",
+    "password": "new-secret",
+    "rentPlanID": 11,
+    "rentedVehicleID": 5,
+    "vehicleName": "Honda Civic"
 }
 ```
 
@@ -328,13 +333,13 @@ DELETE /api/renter/1/rental
 
 ```json
 {
-  "id": 1,
-  "name": "Jane Doe",
-  "email": "jane@example.com",
-  "password": "secret123",
-  "rentPlanID": null,
-  "rentedVehicleID": null,
-  "vehicleName": null
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "password": "secret123",
+    "rentPlanID": null,
+    "rentedVehicleID": null,
+    "vehicleName": null
 }
 ```
 
@@ -358,21 +363,21 @@ GET /api/vehicle
 
 ```json
 [
-  {
-    "id": 1,
-    "brand": "Toyota",
-    "model": "Vios",
-    "price": 1200000.0,
-    "name": "Toyota Vios",
-    "description": "Compact sedan for city drives",
-    "category": "Sedan",
-    "dailyRate": 1800.0,
-    "seats": 5,
-    "transmission": "Automatic",
-    "fuel": "Petrol",
-    "imagePath": "/images/toyota-vios.jpg",
-    "tag": "Popular"
-  }
+    {
+        "id": 1,
+        "brand": "Toyota",
+        "model": "Vios",
+        "price": 1200000.0,
+        "name": "Toyota Vios",
+        "description": "Compact sedan for city drives",
+        "category": "Sedan",
+        "dailyRate": 1800.0,
+        "seats": 5,
+        "transmission": "Automatic",
+        "fuel": "Petrol",
+        "imagePath": "/images/toyota-vios.jpg",
+        "tag": "Popular"
+    }
 ]
 ```
 
@@ -388,18 +393,18 @@ Creates a new vehicle.
 
 ```json
 {
-  "brand": "Toyota",
-  "model": "Vios",
-  "price": 1200000.0,
-  "name": "Toyota Vios",
-  "description": "Compact sedan for city drives",
-  "category": "Sedan",
-  "dailyRate": 1800.0,
-  "seats": 5,
-  "transmission": "Automatic",
-  "fuel": "Petrol",
-  "imagePath": "/images/toyota-vios.jpg",
-  "tag": "Popular"
+    "brand": "Toyota",
+    "model": "Vios",
+    "price": 1200000.0,
+    "name": "Toyota Vios",
+    "description": "Compact sedan for city drives",
+    "category": "Sedan",
+    "dailyRate": 1800.0,
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Petrol",
+    "imagePath": "/images/toyota-vios.jpg",
+    "tag": "Popular"
 }
 ```
 
@@ -415,19 +420,19 @@ Updates an existing vehicle.
 
 ```json
 {
-  "id": 1,
-  "brand": "Toyota",
-  "model": "Vios",
-  "price": 1250000.0,
-  "name": "Toyota Vios",
-  "description": "Updated compact sedan",
-  "category": "Sedan",
-  "dailyRate": 2000.0,
-  "seats": 5,
-  "transmission": "Automatic",
-  "fuel": "Hybrid",
-  "imagePath": "/images/toyota-vios.jpg",
-  "tag": "Featured"
+    "id": 1,
+    "brand": "Toyota",
+    "model": "Vios",
+    "price": 1250000.0,
+    "name": "Toyota Vios",
+    "description": "Updated compact sedan",
+    "category": "Sedan",
+    "dailyRate": 2000.0,
+    "seats": 5,
+    "transmission": "Automatic",
+    "fuel": "Hybrid",
+    "imagePath": "/images/toyota-vios.jpg",
+    "tag": "Featured"
 }
 ```
 

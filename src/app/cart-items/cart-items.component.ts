@@ -66,6 +66,7 @@ export class CartItems {
             totalPrice: this.cart.total(),
             customerName: renterName,
             payMode: this.cart.payMode(),
+            status: 'Pending'
         };
 
         this.isSubmitting.set(true);

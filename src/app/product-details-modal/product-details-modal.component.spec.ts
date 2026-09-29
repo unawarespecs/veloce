@@ -1,14 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
-import { ProductDetails } from './product-details.component';
+import { ProductDetailsModal } from './product-details-modal.component';
 import { Vehicle } from '../model/vehicle';
 import { CartService } from '../service/cart.service';
 import { provideRouter } from '@angular/router';
 
-describe('ProductDetails', () => {
-    let component: ProductDetails;
-    let componentRef: ComponentRef<ProductDetails>;
-    let fixture: ComponentFixture<ProductDetails>;
+describe('ProductDetailsModal', () => {
+    let component: ProductDetailsModal;
+    let componentRef: ComponentRef<ProductDetailsModal>;
+    let fixture: ComponentFixture<ProductDetailsModal>;
     let cartService: CartService;
 
     const mockVehicle: Vehicle = {
@@ -27,11 +27,11 @@ describe('ProductDetails', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ProductDetails],
+            imports: [ProductDetailsModal],
             providers: [provideRouter([])],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(ProductDetails);
+        fixture = TestBed.createComponent(ProductDetailsModal);
         component = fixture.componentInstance;
         componentRef = fixture.componentRef;
         cartService = TestBed.inject(CartService);

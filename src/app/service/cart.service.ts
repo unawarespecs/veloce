@@ -1,6 +1,7 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, signal, WritableSignal } from '@angular/core';
 import { Vehicle } from '../model/vehicle';
 import { ModeOfPayment } from '../model/mode-of-payment';
+import { RentPlanStatus } from '../model/rent-plan-status';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -14,6 +15,7 @@ export class CartService {
     readonly startDate = signal<string>(this.today);
     readonly endDate = signal<string>(this.tomorrow);
     readonly payMode = signal<ModeOfPayment>(ModeOfPayment.Cash);
+    readonly orderStatus= signal<RentPlanStatus>(RentPlanStatus.Pending);
 
     readonly daysRent = computed(() => {
         const start = new Date(this.startDate());
@@ -56,5 +58,9 @@ export class CartService {
 
     setPayMode(mode: ModeOfPayment): void {
         this.payMode.set(mode);
+    }
+
+    setStatus(status: RentPlanStatus): void {
+        this.orderStatus.set(status);
     }
 }
