@@ -1,7 +1,5 @@
 package io.github.unawarespecs.veloce.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.unawarespecs.veloce.enums.ModeOfPayment;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +9,6 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-
 @Getter
 @Setter
 @ToString

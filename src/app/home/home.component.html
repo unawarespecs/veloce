@@ -3,8 +3,8 @@
 <main>
     <section class="hero" id="hero">
         <img class="hero-image"
-            src="https://images.unsplash.com/photo-1585725657613-b0030aaabccc?w=1600&h=1000&fit=crop&auto=format"
-            alt="Metro Manila skyline" />
+             src="https://images.unsplash.com/photo-1585725657613-b0030aaabccc?w=1600&h=1000&fit=crop&auto=format"
+             alt="Metro Manila skyline" />
         <div class="hero-overlay"></div>
         <div class="section-wrap hero-content">
             <div class="hero-copy">
@@ -17,26 +17,27 @@
             <div class="booking-strip" id="booking">
                 <label>Location
                     <span class="select-wrap"><select [value]="location()"
-                            (change)="location.set($any($event.target).value)">
+                                                      (change)="location.set($any($event.target).value)">
                             @for (locationOption of locations; track locationOption.city) {
-                            @if (locationOption.available) {
-                            <option [value]="locationOption.city + ' - ' + locationOption.airport">{{
-                                locationOption.city }}
-                                - {{ locationOption.airport }}</option>
-                            }
+                                @if (locationOption.available) {
+                                    <option [value]="locationOption.city + ' - ' + locationOption.airport">{{
+                                            locationOption.city
+                                        }}
+                                        - {{ locationOption.airport }}</option>
+                                }
                             }
                         </select><app-chevron-down /></span>
                 </label>
                 <label>Pick-up Date<input type="date" [value]="pickupDate()"
-                        (input)="pickupDate.set($any($event.target).value)" /></label>
+                                          (input)="pickupDate.set($any($event.target).value)" /></label>
                 <label>Return Date<input type="date" [value]="returnDate()"
-                        (input)="returnDate.set($any($event.target).value)" /></label>
+                                         (input)="returnDate.set($any($event.target).value)" /></label>
                 <button class="button button-primary search-button" type="button" (click)="searchFleet()">Search Fleet
                     <app-arrow-right />
                 </button>
             </div>
             @if (bookingMessage()) {
-            <p class="booking-message" aria-live="polite">{{ bookingMessage() }}</p>
+                <p class="booking-message" aria-live="polite">{{ bookingMessage() }}</p>
             }
         </div>
     </section>
@@ -44,20 +45,22 @@
     <section class="stats">
         <div class="section-wrap stats-grid">
             @for (stat of [{ value: '150+', label: 'Vehicles in Fleet' }, {
-            value: 'Metro Manila',
-            label: 'Primary Location'
+                value: 'Metro Manila',
+                label: 'Primary Location'
             }, { value: '98%', label: 'Satisfaction Rate' }, {
-            value: '10yr',
-            label: 'Industry Experience'
+                value: '10yr',
+                label: 'Industry Experience'
             }]; track stat.label) {
-            <div class="stat"><strong>{{ stat.value }}</strong><span>{{ stat.label }}</span></div>
+                <div class="stat"><strong>{{ stat.value }}</strong><span>{{ stat.label }}</span></div>
             }
         </div>
     </section>
 
     <app-product-list [maxVehicles]="9" />
     <div class="fleet-more">
-        <a href="/fleet">View All {{ fleet().length || "" }} Vehicles <app-arrow-right /></a>
+        <a href="/fleet">View All {{ fleet().length || "" }} Vehicles
+            <app-arrow-right />
+        </a>
     </div>
 
     <section class="band" id="services">
@@ -68,20 +71,20 @@
                 num: '01',
                 title: 'Choose Your Vehicle',
                 desc: 'Browse our curated fleet of 240+ premium and exotic cars. Filter by category, location, or availability.'
-                }, {
+            }, {
                 num: '02',
                 title: 'Select Dates & Location',
                 desc: 'Pick your pickup and return dates. Choose from our Metro Manila hubs, including NAIA terminals and key city districts.'
-                }, {
+            }, {
                 num: '03',
                 title: 'Confirm & Drive',
                 desc: 'Secure checkout, instant confirmation, and white-glove vehicle handoff at your chosen location.'
-                }]; track step.num) {
+            }]; track step.num) {
                 <article class="step"><strong>{{ step.num }}</strong>
                     <h3>{{ step.title }}</h3>
                     <p>{{ step.desc }}</p>
                 </article>
-                }
+            }
             </div>
         </div>
     </section>
@@ -102,22 +105,24 @@
                             <h3>{{ location.city }}</h3><span>{{ location.airport }}</span>
                         </div>@if (location.available) {
                         <app-arrow-right />
-                        } @else {
+                    } @else {
                         <small>Soon</small>
-                        }
+                    }
                     </div>
-                    <span class="location-count">{{ location.available ? location.count + ' Vehicles Available' :
-                        'Coming Soon' }}</span>
+                    <span class="location-count">{{
+                            location.available ? location.count + ' Vehicles Available' :
+                                'Coming Soon'
+                        }}</span>
                 </article>
-                }
+            }
             </div>
         </div>
     </section>
 
     <section class="experience" id="about">
         <div class="experience-image"><img
-                src="https://images.unsplash.com/photo-1533630217389-3a5e4dff5683?w=800&h=600&fit=crop&auto=format"
-                alt="Luxury car interior" /></div>
+            src="https://images.unsplash.com/photo-1533630217389-3a5e4dff5683?w=800&h=600&fit=crop&auto=format"
+            alt="Luxury car interior" /></div>
         <div class="experience-copy">
             <p class="eyebrow">White Glove Service</p>
             <h2>The Veloce<br />Experience</h2>
@@ -126,7 +131,7 @@
                 discretion. Our concierge team is available
                 24/7.</p>@for (service of ['Complimentary NAIA terminal delivery', 'Dedicated concierge support', 'Full insurance coverage', 'Flexible cancellation policy']; track service) {
             <span class="service-item"><i></i>{{ service }}</span>
-            }
+        }
             <button class="button button-primary">Learn More
                 <app-arrow-right />
             </button>
@@ -141,12 +146,12 @@
                 <article class="testimonial" [class.active]="activeTestimonial() === i" (click)="setTestimonial(i)">
                     <div class="stars">@for (star of [1, 2, 3, 4, 5]; track star) {
                         <app-star-icon />
-                        }
+                    }
                     </div>
                     <blockquote>"{{ testimonial.quote }}"</blockquote>
                     <strong>{{ testimonial.name }}</strong><span>{{ testimonial.title }}</span>
                 </article>
-                }
+            }
             </div>
         </div>
     </section>

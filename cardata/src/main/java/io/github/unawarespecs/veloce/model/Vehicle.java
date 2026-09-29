@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vehicle {
-    private int id;
+    private Integer id;
     private String brand;
     private String model;
     private Double price; // Full price of the vehicle when it was purchased. Do NOT display on the frontend.

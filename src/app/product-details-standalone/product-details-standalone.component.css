@@ -1,0 +1,28 @@
+.details-page {
+    min-height: 100vh;
+    padding: 150px 24px 80px;
+    background: var(--background);
+    color: var(--foreground);
+}
+
+.details-heading {
+    display: block;
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+.details-heading {
+    margin-bottom: 40px;
+}
+
+.details-heading p {
+    color: var(--primary);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+.details-heading h1 {
+    margin: 0;
+    font-size: clamp(30px, 9vw, 54px);
+}

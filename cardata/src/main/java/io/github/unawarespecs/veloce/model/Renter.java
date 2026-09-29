@@ -1,10 +1,7 @@
 package io.github.unawarespecs.veloce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.unawarespecs.veloce.enums.ModeOfPayment;
 import lombok.Data;
 import lombok.ToString;
-
 @Data
 public class Renter {
     private int id;

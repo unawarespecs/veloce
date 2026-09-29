@@ -108,22 +108,22 @@ public class VehicleServiceImpl implements VehicleService {
 
     @NonNull
     private Vehicle createVehicleFromRepo(VehicleData datum) {
-        vdr.save(datum);
+        VehicleData savedDatum = vdr.save(datum);
 
         Vehicle nv = new Vehicle();
-        nv.setId(datum.getId());
-        nv.setCategory(datum.getCategory());
-        nv.setBrand(datum.getBrand());
-        nv.setModel(datum.getModel());
-        nv.setPrice(datum.getPrice());
-        nv.setDailyRate(datum.getDailyRate());
-        nv.setName(datum.getName());
-        nv.setDescription(datum.getDescription());
-        nv.setSeats(datum.getSeats());
-        nv.setTransmission(datum.getTransmission());
-        nv.setFuel(datum.getFuel());
-        nv.setImagePath(datum.getImagePath());
-        nv.setTag(datum.getTag());
+        nv.setId(savedDatum.getId());
+        nv.setCategory(savedDatum.getCategory());
+        nv.setBrand(savedDatum.getBrand());
+        nv.setModel(savedDatum.getModel());
+        nv.setPrice(savedDatum.getPrice());
+        nv.setDailyRate(savedDatum.getDailyRate());
+        nv.setName(savedDatum.getName());
+        nv.setDescription(savedDatum.getDescription());
+        nv.setSeats(savedDatum.getSeats());
+        nv.setTransmission(savedDatum.getTransmission());
+        nv.setFuel(savedDatum.getFuel());
+        nv.setImagePath(savedDatum.getImagePath());
+        nv.setTag(savedDatum.getTag());
         return nv;
     }
 
