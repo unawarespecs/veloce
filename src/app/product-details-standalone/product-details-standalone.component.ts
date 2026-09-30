@@ -6,11 +6,12 @@ import {
     output,
     inject,
     signal,
+    OnInit
 } from '@angular/core';
 import { Header } from '../header/header.component';
 import { Footer } from '../footer/footer.component';
 import { DecimalPipe } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Vehicle } from '../model/vehicle';
 import { CartService } from '../service/cart.service';
 import { VehicleService } from '../service/vehicle.service';
@@ -18,12 +19,12 @@ import { ArrowRight } from '../icon/arrow-right.component';
 
 @Component({
     selector: 'app-product-details-standalone',
-    imports: [Header, Footer, DecimalPipe, ArrowRight],
+    imports: [Header, Footer, DecimalPipe, ArrowRight, RouterLink],
     templateUrl: './product-details-standalone.component.html',
     styleUrl: './product-details-standalone.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductDetailsStandalone {
+export class ProductDetailsStandalone implements OnInit {
     readonly vehicle = input<Vehicle | null>(null);
     readonly close = output<void>();
     readonly reserve = output<Vehicle>();
@@ -46,6 +47,10 @@ export class ProductDetailsStandalone {
                 }
             });
         }
+    }
+
+    ngOnInit(): void {
+        this.productService.selectedVehicle();
     }
 
     readonly displayVehicle = computed<Vehicle | null>(() => {

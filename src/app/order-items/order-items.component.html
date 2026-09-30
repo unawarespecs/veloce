@@ -7,7 +7,7 @@
         <h2>{{ vehicleName() }}</h2>
         <p class="order-dates">
             {{ rentPlan().startRent | date: 'mediumDate' }} - {{ rentPlan().endRent | date: 'mediumDate' }}
-            | Status: {{ rentPlan().status }}
+            | Status: <span class="rent-plan-status">{{ rentPlan().status }}</span>
         </p>
     </div>
     <div class="order-total">

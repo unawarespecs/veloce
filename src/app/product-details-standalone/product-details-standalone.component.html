@@ -2,13 +2,15 @@
 @if (displayVehicle(); as v) {
     <main class="details-page">
         <div class="details-heading">
-            <p>Details</p>
+            <p>Details [Work in progress]</p>
             <h1>{{ v.name }}</h1>
         </div>
 
         <article>
-
+            <p>{{ v.description }}</p>
         </article>
+
+        <a routerLink="/fleet">Back <-</a>
     </main>
 }
 <app-footer />

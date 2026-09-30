@@ -25,7 +25,8 @@
     } @else {
         <div class="fleet-grid">
             @for (vehicle of displayedFleet(); track vehicle.id) {
-                <article class="vehicle" (mouseenter)="hoveredId.set(vehicle.id)" (mouseleave)="hoveredId.set(null)" (click)="openDetails(vehicle)">
+                <article class="vehicle" (mouseenter)="hoveredId.set(vehicle.id)" (mouseleave)="hoveredId.set(null)"
+                         (click)="openDetails(vehicle)">
                     @if (vehicle.tag) {
                         <span class="vehicle-tag">{{ vehicle.tag }}</span>
                     }
@@ -41,10 +42,13 @@
                             <strong>₱{{ vehicle.dailyRate | number }}<small>/day</small></strong>
                         </div>
                         <div class="vehicle-specs">
-                            <span>{{ vehicle.seats }} Seats</span><i>|</i><span>{{ vehicle.transmission }}</span><i>|</i><span>{{ vehicle.fuel }}</span>
+                            <span>{{ vehicle.seats }}
+                                Seats</span><i>|</i><span>{{ vehicle.transmission }}</span><i>|</i><span>{{ vehicle.fuel }}</span>
                         </div>
-                        <button type="button" class="reserve" [class.highlighted]="hoveredId() === vehicle.id" (click)="reserve(vehicle, $event)">
-                            Reserve Now <app-arrow-right [size]="14" />
+                        <button type="button" class="reserve" [class.highlighted]="hoveredId() === vehicle.id"
+                                (click)="reserve(vehicle, $event)">
+                            Reserve Now
+                            <app-arrow-right [size]="14" />
                         </button>
                     </div>
                 </article>
@@ -52,11 +56,13 @@
         </div>
     }
 
-    @if (selectedVehicle()) {
-        <app-product-details-modal
-            [vehicle]="selectedVehicle()"
-            (close)="closeDetails()"
-            (reserve)="reserve($event)"
-        />
-    }
+    <!-- TODO: use new route for product details component (ProductDetailsStandalone) -->
+
+        @if (selectedVehicle()) {
+            <app-product-details-modal
+                [vehicle]="selectedVehicle()"
+                (close)="closeDetails()"
+                (reserve)="reserve($event)"
+            />
+        }
 </section>
