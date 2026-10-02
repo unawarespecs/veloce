@@ -38,6 +38,14 @@ export class ProductDetailsStandalone implements OnInit {
 
     constructor() {
         if (this.route) {
+            this.route.params.subscribe((params) => {
+                if (params['id']) {
+                    const id = Number(params['id']);
+                    if (!isNaN(id)) {
+                        this.routeVehicleId.set(id);
+                    }
+                }
+            });
             this.route.queryParams.subscribe((params) => {
                 if (params['id']) {
                     const id = Number(params['id']);
@@ -61,11 +69,11 @@ export class ProductDetailsStandalone implements OnInit {
             return this.productService.selectedVehicle();
         }
         const routeId = this.routeVehicleId();
+        const fleet = this.productService.fleet();
         if (routeId !== null) {
-            const found = this.productService.getVehicleById(routeId);
+            const found = fleet.find((vehicle) => vehicle.id === routeId);
             if (found) return found;
         }
-        const fleet = this.productService.getFleet();
         return fleet.length > 0 ? fleet[0] : null;
     });
 

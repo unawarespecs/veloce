@@ -58,7 +58,7 @@
 
     <app-product-list [maxVehicles]="9" />
     <div class="fleet-more">
-        <a href="/fleet">View All {{ fleet().length || "" }} Vehicles
+        <a routerLink="/fleet">View All {{ fleet().length || "" }} Vehicles
             <app-arrow-right />
         </a>
     </div>

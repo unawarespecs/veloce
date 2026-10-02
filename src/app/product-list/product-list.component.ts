@@ -1,20 +1,21 @@
 import { Component, computed, input, signal, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { ArrowRight } from '../icon/arrow-right.component';
 import { CartService } from '../service/cart.service';
 import { VehicleService } from '../service/vehicle.service';
 import { Vehicle } from '../model/vehicle';
 import { ProductDetailsModal } from '../product-details-modal/product-details-modal.component';
-import { ProductDetailsStandalone } from '../product-details-standalone/product-details-standalone.component';
 
 @Component({
     selector: 'app-product-list',
-    imports: [ArrowRight, DecimalPipe, ProductDetailsModal, ProductDetailsStandalone],
+    imports: [ArrowRight, DecimalPipe, ProductDetailsModal],
     templateUrl: './product-list.component.html',
     styleUrl: './product-list.component.css',
 })
 export class ProductList {
     readonly maxVehicles = input<number>();
+    readonly detailsMode = input<'modal' | 'standalone'>('modal');
     readonly categories = ['All', 'Sedan', 'SUV', 'Truck', 'Van', 'Sports', 'Luxury'];
     readonly activeCategory = signal('All');
     readonly hoveredId = signal<number | null>(null);
@@ -22,6 +23,7 @@ export class ProductList {
 
     private readonly productService = inject(VehicleService);
     private readonly cart = inject(CartService);
+    private readonly router = inject(Router, { optional: true });
 
     readonly fleet = this.productService.fleet;
     readonly fleetStatus = this.productService.fleetStatus;
@@ -38,7 +40,13 @@ export class ProductList {
     }
 
     openDetails(vehicle: Vehicle): void {
-        this.selectedVehicle.set(vehicle);
+        if (this.detailsMode() === 'standalone') {
+            if (this.router) {
+                this.router.navigate(['/fleet', vehicle.id]);
+            }
+        } else {
+            this.selectedVehicle.set(vehicle);
+        }
     }
 
     closeDetails(): void {

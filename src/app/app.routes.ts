@@ -10,7 +10,7 @@ import { ProductDetailsStandalone } from './product-details-standalone/product-d
 
 export const routes: Routes = [
     { path: '', component: Home, title: 'Veloce Car Rental' },
-    { path: 'orders', component: OrderList, title: 'Orders' },
+    { path: 'orders', component: OrderList, title: 'Your Rentals' },
     { path: 'fleet', component: Fleet, title: 'Our Fleet' },
     { path: 'cart', component: Cart, title: 'Cart' },
     { path: 'products', component: ProductList, title: 'Available Vehicles' },

@@ -6,10 +6,11 @@ import { RentPlanService } from '../service/rent-plan.service';
 import { RenterService } from '../service/renter.service';
 import { ModeOfPayment } from '../model/mode-of-payment';
 import { RentPlan } from '../model/rent-plan';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-cart-items',
-    imports: [DecimalPipe, FormsModule],
+    imports: [DecimalPipe, FormsModule, RouterLink],
     templateUrl: './cart-items.component.html',
     styleUrl: './cart-items.component.css',
 })

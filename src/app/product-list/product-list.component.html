@@ -56,9 +56,7 @@
         </div>
     }
 
-    <!-- TODO: use new route for product details component (ProductDetailsStandalone) -->
-
-        @if (selectedVehicle()) {
+        @if (detailsMode() === 'modal' && selectedVehicle()) {
             <app-product-details-modal
                 [vehicle]="selectedVehicle()"
                 (close)="closeDetails()"

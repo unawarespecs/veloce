@@ -42,11 +42,13 @@ Ensure dependencies flow in one direction: `Controller -> Service -> Repository`
 - `io.github.unawarespecs.veloce.model` (Base models)
 - `io.github.unawarespecs.veloce.enums` (Enums for base models/entities)
 - `io.github.unawarespecs.veloce.service` (Business Logic Interfaces)
+- `io.github.unawarespecs.veloce.transform` (Conversion interfaces, eases conversion from base model to JPA entity and vice versa)
 
 #### sbrentms
 
 - `io.github.unawarespecs.veloce.controller` (REST Endpoints, HTTP Mapping, Validations)
 - `io.github.unawarespecs.veloce.serviceimpl` (Business Logic Implementations)
+- `io.github.unawarespecs.veloce.transformsrvimpl` (Implementation of conversion interfaces mentioned above)
 
 ## Java & Spring conventions
 

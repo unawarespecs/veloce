@@ -2,15 +2,67 @@
 @if (displayVehicle(); as v) {
     <main class="details-page">
         <div class="details-heading">
-            <p>Details [Work in progress]</p>
+            <p class="eyebrow">{{ v.category }}</p>
             <h1>{{ v.name }}</h1>
         </div>
 
-        <article>
-            <p>{{ v.description }}</p>
-        </article>
+        <div class="details-content">
+            <article class="details-card">
+                <div class="details-grid">
+                    <div class="details-media">
+                        @if (v.tag) {
+                            <span class="vehicle-tag">{{ v.tag }}</span>
+                        }
+                        <img [src]="v.imagePath" [alt]="v.name" class="vehicle-image" />
+                    </div>
 
-        <a routerLink="/fleet">Back <-</a>
+                    <div class="details-body">
+                        <div class="details-header">
+                            <span class="vehicle-category">{{ v.category }}</span>
+                            <h2 class="vehicle-name">{{ v.name }}</h2>
+                            <div class="vehicle-price">
+                                <span class="price-amount">₱{{ v.dailyRate | number }}</span>
+                                <span class="price-period">/ day</span>
+                            </div>
+                        </div>
+
+                        <div class="details-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Seats</span>
+                                <span class="spec-value">{{ v.seats }} Seats</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Transmission</span>
+                                <span class="spec-value">{{ v.transmission }}</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Fuel Type</span>
+                                <span class="spec-value">{{ v.fuel }}</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Category</span>
+                                <span class="spec-value">{{ v.category }}</span>
+                            </div>
+                        </div>
+
+                        <div class="details-description">
+                            <h3>Overview</h3>
+                            <p>{{ vehicleDescription() }}</p>
+                        </div>
+
+                        <div class="details-actions">
+                            <button type="button" class="btn-reserve" (click)="onReserve(v)">
+                                Reserve Now
+                                <app-arrow-right [size]="16" />
+                            </button>
+                            <a routerLink="/fleet" class="btn-back">
+                                Back to Fleet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
     </main>
 }
 <app-footer />

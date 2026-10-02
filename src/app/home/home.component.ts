@@ -6,10 +6,11 @@ import { StarIcon } from '../icon/star-icon.component';
 import { Footer } from '../footer/footer.component';
 import { Header } from '../header/header.component';
 import { VehicleService } from '../service/vehicle.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-home',
-    imports: [ProductList, ArrowRight, ChevronDown, StarIcon, Footer, Header],
+    imports: [ProductList, ArrowRight, ChevronDown, StarIcon, Footer, Header, RouterLink],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
 })

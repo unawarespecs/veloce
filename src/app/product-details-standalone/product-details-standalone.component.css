@@ -5,7 +5,8 @@
     color: var(--foreground);
 }
 
-.details-heading {
+.details-heading,
+.details-content {
     display: block;
     width: min(900px, 100%);
     margin: 0 auto;
@@ -15,14 +16,223 @@
     margin-bottom: 40px;
 }
 
-.details-heading p {
+.details-heading p,
+.eyebrow {
     color: var(--primary);
     font-size: 11px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
+    margin-bottom: 0.35rem;
 }
 
 .details-heading h1 {
     margin: 0;
-    font-size: clamp(30px, 9vw, 54px);
+    font-size: clamp(56px, 9vw, 90px);
+}
+
+.details-card {
+    padding: 28px;
+    border: 1px solid var(--border);
+    background: var(--card);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.details-media {
+    position: relative;
+    background-color: var(--background);
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.vehicle-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.vehicle-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.details-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.details-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+}
+
+.vehicle-category {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+}
+
+.vehicle-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.vehicle-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+}
+
+.price-amount {
+    font: 700 28px 'Barlow Condensed', sans-serif;
+    color: var(--primary);
+}
+
+.price-period {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.details-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.spec-label {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.spec-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--foreground);
+}
+
+.details-description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.details-description h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.details-description p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+    margin: 0;
+}
+
+.details-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    align-items: center;
+}
+
+.btn-reserve {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border: none;
+    font: 600 13px 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    flex: 2;
+}
+
+.btn-reserve:hover {
+    opacity: 0.9;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    color: var(--muted-foreground);
+    background: transparent;
+    font: 600 13px 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    flex: 1;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-back:hover {
+    color: var(--foreground);
+    border-color: var(--foreground);
+}
+
+@media (max-width: 560px) {
+    .details-actions {
+        flex-direction: column;
+    }
+    .btn-reserve,
+    .btn-back {
+        width: 100%;
+    }
 }
