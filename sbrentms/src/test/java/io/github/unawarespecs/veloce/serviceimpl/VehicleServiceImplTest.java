@@ -6,9 +6,10 @@ import io.github.unawarespecs.veloce.enums.VehicleFuelType;
 import io.github.unawarespecs.veloce.enums.VehicleTransmissionType;
 import io.github.unawarespecs.veloce.model.Vehicle;
 import io.github.unawarespecs.veloce.repository.VehicleDataRepository;
+import io.github.unawarespecs.veloce.transformsrvimpl.TransformVehicleServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -24,9 +25,12 @@ import static org.mockito.Mockito.when;
 class VehicleServiceImplTest {
     @Mock
     private VehicleDataRepository vehicleDataRepository;
-
-    @InjectMocks
     private VehicleServiceImpl vehicleService;
+
+    @BeforeEach
+    void setUp() {
+        vehicleService = new VehicleServiceImpl(vehicleDataRepository, new TransformVehicleServiceImpl());
+    }
 
     @Test
     void addVehicleUsesGeneratedIdFromSavedEntity() {

@@ -24,7 +24,7 @@
 
 .orders-heading h1 {
     margin: 0;
-    font-size: clamp(56px, 9vw, 90px);
+    font-size: clamp(30px, 9vw, 56px);
 }
 
 
