@@ -18,7 +18,8 @@
     <modules>
         <module>cardata</module>
         <module>sbrentms</module>
-        </modules>
+        <module>carbiz</module>
+    </modules>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

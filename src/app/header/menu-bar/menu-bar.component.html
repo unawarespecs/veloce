@@ -15,7 +15,7 @@
         <a class="button button-primary" href="#booking">Book Now</a>
         @if (isAuthenticated()) {
             <span class="user-greeting">Hi, {{ currentRenter()?.name }}</span>
-            <a class="button button-primary" routerLink="/orders">Current Rentals</a>
+            <a class="button button-primary" routerLink="/orders">Your Rentals</a>
             <a class="button button-secondary" (click)="signOut()">Sign Out</a>
         } @else {
             <a class="button button-primary" routerLink="/sign-in">Sign In</a>
@@ -41,7 +41,7 @@
     <a class="button button-primary" href="#booking" (click)="closeMenu()">Book Now <app-arrow-right /></a>
     @if (isAuthenticated()) {
         <span class="user-greeting">Hi, {{ currentRenter()?.name }}</span>
-        <a class="button button-primary" routerLink="/orders">Current Rentals</a>
+        <a class="button button-primary" routerLink="/orders">Your Rentals</a>
         <a class="button button-secondary" (click)="signOut()">Sign Out</a>
     } @else {
         <a class="button button-primary" routerLink="/sign-in" (click)="closeMenu()">Sign In<app-arrow-right /></a>

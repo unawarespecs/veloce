@@ -23,32 +23,37 @@ Always execute or verify code changes using these commands:
 
 ## Architecture & Package structure
 
-This is a Maven multi-module project (root `pom.xml`) with two modules:
+This is a Maven multi-module project (root `pom.xml`) with three modules:
 
-- JPA entities, base models, data repositories, services, and other classes live in the `cardata` module.
+- Base models, services, and other classes live in the `carbiz` module.
+
+- JPA entities and data repositories live in the `cardata` module.
 
 - Spring controllers and service implementations live in the `sbrentms` module. This module depends on `cardata` and adds Spring Web, Data JPA, Actuator, MySQL runtime support, and testing dependencies.
 
-Treat `cardata` as the data-layer contract. Avoid mixing UI/API concerns into JPA models.
+Treat `cardata` and `carbiz` as the data-layer contract. Avoid mixing UI/API concerns into JPA models.
 
 Ensure dependencies flow in one direction: `Controller -> Service -> Repository`.
 
 ### Java packages
 
-#### cardata
+#### carbiz
 
-- `io.github.unawarespecs.veloce.repository` (Spring Data Repositories)
-- `io.github.unawarespecs.veloce.entity` (Database Entities)
 - `io.github.unawarespecs.veloce.model` (Base models)
 - `io.github.unawarespecs.veloce.enums` (Enums for base models/entities)
 - `io.github.unawarespecs.veloce.service` (Business Logic Interfaces)
 - `io.github.unawarespecs.veloce.transform` (Conversion interfaces, eases conversion from base model to JPA entity and vice versa)
+- `io.github.unawarespecs.veloce.serviceimpl` (Business Logic Implementations)
+- `io.github.unawarespecs.veloce.transformsrvimpl` (Implementation of conversion interfaces mentioned above)
+
+#### cardata
+
+- `io.github.unawarespecs.veloce.repository` (Spring Data Repositories)
+- `io.github.unawarespecs.veloce.entity` (Database Entities)
 
 #### sbrentms
 
 - `io.github.unawarespecs.veloce.controller` (REST Endpoints, HTTP Mapping, Validations)
-- `io.github.unawarespecs.veloce.serviceimpl` (Business Logic Implementations)
-- `io.github.unawarespecs.veloce.transformsrvimpl` (Implementation of conversion interfaces mentioned above)
 
 ## Java & Spring conventions
 

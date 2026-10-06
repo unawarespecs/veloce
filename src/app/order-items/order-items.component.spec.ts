@@ -24,6 +24,7 @@ describe('OrderItems', () => {
             totalPrice: 7500,
             customerName: 'John Doe',
             payMode: 'GCash',
+            status: 'Rented'
         } satisfies RentPlan);
         fixture.componentRef.setInput('vehicleName', 'Veloce Sedan');
         await fixture.whenStable();

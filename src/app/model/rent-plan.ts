@@ -1,3 +1,6 @@
+import { RentPlanStatus } from './rent-plan-status';
+import { ModeOfPayment } from './mode-of-payment';
+
 export interface RentPlan {
     id?: number;
     renterID?: number;
@@ -7,6 +10,6 @@ export interface RentPlan {
     daysRent: number;
     totalPrice: number;
     customerName: string;
-    payMode: string;
-    status?: string;
+    payMode: string | ModeOfPayment;
+    status?: string | RentPlanStatus;
 }
