@@ -105,3 +105,7 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+
+# sbrentms MySQL database
+/sbrentms/db/
+/sbrentms/init.sql/
