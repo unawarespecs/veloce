@@ -40,7 +40,6 @@ Ensure dependencies flow in one direction: `Controller -> Service -> Repository`
 #### carbiz
 
 - `io.github.unawarespecs.veloce.model` (Base models)
-- `io.github.unawarespecs.veloce.enums` (Enums for base models/entities)
 - `io.github.unawarespecs.veloce.service` (Business Logic Interfaces)
 - `io.github.unawarespecs.veloce.transform` (Conversion interfaces, eases conversion from base model to JPA entity and vice versa)
 - `io.github.unawarespecs.veloce.serviceimpl` (Business Logic Implementations)
@@ -48,6 +47,7 @@ Ensure dependencies flow in one direction: `Controller -> Service -> Repository`
 
 #### cardata
 
+- `io.github.unawarespecs.veloce.enums` (Enums for base models/entities)
 - `io.github.unawarespecs.veloce.repository` (Spring Data Repositories)
 - `io.github.unawarespecs.veloce.entity` (Database Entities)
 
@@ -132,7 +132,7 @@ To summarize, creation of a new entity class starts with making a `base model` -
 
 ## Quick do/don't checklist for agents
 
-- Do: follow module boundaries (edit implementations in sbrentms, update contracts in cardata only when intentionally changing the data model).
+- Do: follow module boundaries (edit implementations in sbrentms, update contracts in cardata/carbiz only when intentionally changing the data model).
 - Do: mirror manual mapping conventions or add a single, repo-wide mapper if adding many mappings (document it).
 - Don't: assume DTOs equal entities — code explicitly maps between them.
 - Do: handle null returns from services and convert to proper HTTP statuses in controllers.

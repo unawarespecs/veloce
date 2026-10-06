@@ -4,4 +4,4 @@ This repository is a full-stack e-commerce web application for a car rental busi
 
 Keep work aligned with its current architecture and conventions.
 
-Refer to [agents.angular.md](agents.angular.md) for the Angular 21 frontend, and [agents.springboot.md](agents.springboot.md) for the Spring Boot backend.
+Refer to [agents.angular.md](agents.angular.md) for the Angular 22 frontend, and [agents.springboot.md](agents.springboot.md) for the Spring Boot backend.

@@ -53,6 +53,6 @@ This repository contains an Angular 22 single-page application frontend for a ca
 - Models: [src/app/model](src/app/model)
 - Services: [src/app/service](src/app/service)
 - API documentation: [docs/api](docs/api)
-- Backend implementation (Java): [cardata](cardata), [sbrentms](sbrentms)
+- Backend implementation (Java): [cardata](cardata), [sbrentms](sbrentms), [carbiz](carbiz)
 
 When working in this repo, keep the change scope small, follow the existing Angular 22 conventions, and prefer direct reuse of the established storefront patterns over introducing new abstractions.
