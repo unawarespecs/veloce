@@ -9,7 +9,7 @@ import { Fleet } from './fleet/fleet.component';
 import { ProductDetailsStandalone } from './product-details-standalone/product-details-standalone.component';
 
 export const routes: Routes = [
-    { path: '', component: Home, title: 'Veloce Car Rental' },
+    { path: '', component: Home, title: 'Veloce Auto — The Premium Car Rental Service' },
     { path: 'orders', component: OrderList, title: 'Your Rentals' },
     { path: 'fleet', component: Fleet, title: 'Our Fleet' },
     { path: 'cart', component: Cart, title: 'Cart' },

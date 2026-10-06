@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../service/cart.service';
@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
     selector: 'app-cart-items',
     imports: [DecimalPipe, FormsModule, RouterLink],
     templateUrl: './cart-items.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './cart-items.component.css',
 })
 export class CartItems {

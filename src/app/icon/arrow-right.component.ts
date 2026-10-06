@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-arrow-right',
@@ -13,6 +13,7 @@ import { Component, input } from '@angular/core';
     >
         <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
     </svg>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     styles: `
         :host {
             display: inline-flex;

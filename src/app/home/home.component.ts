@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ProductList } from '../product-list/product-list.component';
 import { ArrowRight } from '../icon/arrow-right.component';
 import { ChevronDown } from '../icon/chevron-down.component';
@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
     selector: 'app-home',
     imports: [ProductList, ArrowRight, ChevronDown, StarIcon, Footer, Header, RouterLink],
     templateUrl: './home.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './home.component.css',
 })
 export class Home {

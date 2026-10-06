@@ -1,4 +1,4 @@
-import { Component, computed, input, signal, inject } from '@angular/core';
+import { Component, computed, input, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { ArrowRight } from '../icon/arrow-right.component';
@@ -11,6 +11,7 @@ import { ProductDetailsModal } from '../product-details-modal/product-details-mo
     selector: 'app-product-list',
     imports: [ArrowRight, DecimalPipe, ProductDetailsModal],
     templateUrl: './product-list.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './product-list.component.css',
 })
 export class ProductList {

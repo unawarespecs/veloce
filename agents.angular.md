@@ -1,6 +1,6 @@
 # Veloce Car Rental AI Agent guide (Angular SPA Frontend)
 
-This repository contains an Angular 21 single-page application frontend for a car rental storefront. Keep work aligned with its current architecture and conventions.
+This repository contains an Angular 22 single-page application frontend for a car rental storefront. Keep work aligned with its current architecture and conventions.
 
 ## Project structure
 
@@ -12,12 +12,12 @@ This repository contains an Angular 21 single-page application frontend for a ca
 
 ## Angular conventions
 
-- This app uses Angular 21 standalone components. Do not introduce NgModules for new features unless the codebase already requires them
+- This app uses Angular 22 standalone components. Do not introduce NgModules for new features unless the codebase already requires them
 - Keep `standalone` default behavior; do not add `standalone: true` to component decorators
 - Prefer `input()` and `output()` over decorator-based inputs/outputs
 - Prefer signals for local state and `computed()` for derived values; do not mutate signals directly
 - Prefer native control flow in templates: `@if`, `@for`, `@switch` instead of `*ngIf`, `*ngFor`, `*ngSwitch`
-- Use `ChangeDetectionStrategy.OnPush` in component decorators when the component is stateful or value-driven
+- Use `ChangeDetectionStrategy.Eager` in component decorators when the component is stateful or value-driven
 - Put host bindings in the `host` object of the decorator instead of `@HostBinding` or `@HostListener`
 - Keep templates simple and avoid complex logic inside them
 - Use `inject()` for service access when it matches the app’s existing patterns
@@ -55,4 +55,4 @@ This repository contains an Angular 21 single-page application frontend for a ca
 - API documentation: [docs/api](docs/api)
 - Backend implementation (Java): [cardata](cardata), [sbrentms](sbrentms)
 
-When working in this repo, keep the change scope small, follow the existing Angular 21 conventions, and prefer direct reuse of the established storefront patterns over introducing new abstractions.
+When working in this repo, keep the change scope small, follow the existing Angular 22 conventions, and prefer direct reuse of the established storefront patterns over introducing new abstractions.
