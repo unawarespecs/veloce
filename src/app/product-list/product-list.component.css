@@ -105,7 +105,7 @@
     margin-bottom: 18px;
 }
 .vehicle-title span {
-    color: rgb(245 240 235 / 45%);
+    color: var(--muted-foreground);
     font:
         11px 'Barlow Condensed',
         sans-serif;
@@ -127,7 +127,7 @@
 }
 .vehicle-title small {
     display: block;
-    color: rgb(245 240 235 / 40%);
+    color: var(--muted-foreground);
     font:
         10px 'Inter',
         sans-serif;

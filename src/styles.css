@@ -37,6 +37,28 @@
     --border: #242424;
     --ring: #dc2020;
     --radius: 2px;
+    --header-bg: rgb(10 10 10 / 92%);
+}
+
+[data-theme='light'] {
+    --background: #f4f4f6;
+    --foreground: #111827;
+    --card: #ffffff;
+    --card-foreground: #111827;
+    --primary: #dc2020;
+    --primary-hovered: #a41717;
+    --primary-foreground: #ffffff;
+    --secondary: #e5e7eb;
+    --secondary-foreground: #111827;
+    --secondary-button: #e2e8f0;
+    --muted: #e5e7eb;
+    --muted-foreground: #6b7280;
+    --accent: #dc2020;
+    --accent-foreground: #ffffff;
+    --border: #d1d5db;
+    --ring: #dc2020;
+    --radius: 2px;
+    --header-bg: rgb(244 244 246 / 92%);
 }
 
 * {

@@ -1,3 +1,11 @@
+:host {
+  --modal-accent: #d4af37;
+}
+
+:host-context([data-theme='light']) {
+  --modal-accent: var(--primary);
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -15,12 +23,12 @@
   position: relative;
   width: 100%;
   max-width: 1200px;
-  background-color: #14161b;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--card);
+  border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  color: #f3f4f6;
+  color: var(--foreground);
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -32,9 +40,9 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  color: var(--foreground);
   font-size: 1.5rem;
   line-height: 1;
   display: flex;
@@ -45,7 +53,7 @@
 }
 
 .modal-close:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--muted);
   transform: scale(1.05);
 }
 
@@ -62,7 +70,7 @@
 
 .details-media {
   position: relative;
-  background-color: #0d0e12;
+  background-color: var(--background);
   min-height: 280px;
   display: flex;
   align-items: center;
@@ -100,7 +108,7 @@
 }
 
 .details-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border);
   padding-bottom: 1rem;
 }
 
@@ -108,7 +116,7 @@
   display: block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #d4af37;
+  color: var(--modal-accent);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 0.25rem;
@@ -117,7 +125,7 @@
 .vehicle-name {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--foreground);
   margin: 0 0 0.5rem 0;
   line-height: 1.2;
 }
@@ -131,20 +139,20 @@
 .price-amount {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--foreground);
 }
 
 .price-period {
   font-size: 0.875rem;
-  color: #9ca3af;
+  color: var(--muted-foreground);
 }
 
 .details-specs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--secondary);
+  border: 1px solid var(--border);
   padding: 1rem;
   border-radius: 10px;
 }
@@ -157,7 +165,7 @@
 
 .spec-label {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: var(--muted-foreground);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -165,7 +173,7 @@
 .spec-value {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #e5e7eb;
+  color: var(--foreground);
 }
 
 .details-description {
@@ -177,7 +185,7 @@
 .details-description h3 {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #d4af37;
+  color: var(--modal-accent);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0;
@@ -186,7 +194,7 @@
 .details-description p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #d1d5db;
+  color: var(--muted-foreground);
   margin: 0;
 }
 
@@ -222,13 +230,13 @@
 
   .button-secondary {
     flex: 1;
-    background-color: rgba(255, 255, 255, 0.08);
-    color: #f3f4f6;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: var(--secondary);
+    color: var(--foreground);
+    border: 1px solid var(--border);
   }
 
   .button-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: var(--muted);
   }
 }
 

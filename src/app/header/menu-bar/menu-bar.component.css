@@ -58,6 +58,15 @@
     border: none;
 }
 
+.theme-toggle {
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover {
+    background: var(--border);
+}
+
 .button-primary:hover,
 .button-primary:focus-visible {
     background: var(--primary-hovered);

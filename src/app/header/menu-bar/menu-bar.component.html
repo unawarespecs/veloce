@@ -20,6 +20,13 @@
         } @else {
             <a class="button button-primary" routerLink="/sign-in">Sign In</a>
         }
+        <button class="button button-secondary theme-toggle" (click)="toggleTheme()" type="button" aria-label="Toggle light/dark theme">
+            @if (currentTheme() === 'dark') {
+                <span class="theme-icon">☀️</span>
+            } @else {
+                <span class="theme-icon">🌙</span>
+            }
+        </button>
     </div>
     <button class="menu-toggle" type="button" (click)="menuOpen.update((open) => !open)"
         [attr.aria-expanded]="menuOpen()" aria-label="Toggle navigation">
@@ -46,5 +53,12 @@
     } @else {
         <a class="button button-primary" routerLink="/sign-in" (click)="closeMenu()">Sign In<app-arrow-right /></a>
     }
+    <button class="button button-secondary theme-toggle" (click)="toggleTheme()" type="button" aria-label="Toggle light/dark theme">
+        @if (currentTheme() === 'dark') {
+            <span class="theme-icon">☀️</span>
+        } @else {
+            <span class="theme-icon">🌙</span>
+        }
+    </button>
 </div>
 }
