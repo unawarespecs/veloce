@@ -19,7 +19,7 @@ describe('ProductDetailsModal', () => {
         dailyRate: 15000,
         seats: 2,
         transmission: 'Automatic',
-        fuel: 'Petrol',
+        fuel: 'Gasoline',
         imagePath: 'test.jpg',
         tag: 'Exotic',
         description: 'A breathtaking high-performance sports car with unmatched speed.',
@@ -51,7 +51,7 @@ describe('ProductDetailsModal', () => {
         expect(nativeElement.textContent).toContain('Test Supercar');
         expect(nativeElement.textContent).toContain('2 Seats');
         expect(nativeElement.textContent).toContain('Automatic');
-        expect(nativeElement.textContent).toContain('Petrol');
+        expect(nativeElement.textContent).toContain('Gasoline');
         expect(nativeElement.textContent).toContain('15,000');
         expect(nativeElement.textContent).toContain(
             'A breathtaking high-performance sports car with unmatched speed.',

@@ -53,7 +53,7 @@ class VehicleServiceImplTest {
         request.setDailyRate(19550.0);
         request.setSeats(2);
         request.setTransmission(VehicleTransmissionType.Automatic);
-        request.setFuel(VehicleFuelType.Petrol);
+        request.setFuel(VehicleFuelType.Gasoline);
         request.setImagePath("https://images.unsplash.com/photo-1535448580089-c7f9490c78b1?w=800&h=520&fit=crop&auto=format");
         request.setTag("");
         Vehicle result = vehicleService.addVehicle(request);

@@ -22,20 +22,22 @@
         <h2>Loading your rentals</h2>
         <p>We are retrieving your current reservations.</p>
     </div>
-    } @else if (orders().length === 0) {
-    <div class="orders-empty">
-        <h2>No current rentals</h2>
-        <p>You do not have any active reservations right now.</p>
-    </div>
     } @else {
-    <div class="orders-list">
-        @for (order of orders(); track order.plan.id) {
-        <app-order-items [rentPlan]="order.plan" [vehicleName]="order.vehicleName" [vehicleImage]="order.vehicleImage"
-            (cancel)="cancel(order.plan)" />
+        @if (orders().length === 0) {
+        <div class="orders-empty">
+            <h2>No current rentals</h2>
+            <p>You do not have any active reservations right now.</p>
+        </div>
+        } @else {
+        <div class="orders-list">
+            @for (order of orders(); track order.plan.id) {
+            <app-order-items [rentPlan]="order.plan" [vehicleName]="order.vehicleName" [vehicleImage]="order.vehicleImage"
+                (cancel)="cancel(order.plan)" />
+            }
+        </div>
         }
 
-        <app-order-history />
-    </div>
+        <app-order-history [history]="historyOrders()" [isLoading]="isLoadingHistory()" />
     }
 </main>
 <footer>

@@ -1,13 +1,19 @@
 <article class="order-item">
     @if (vehicleImage()) {
-        <img class="vehicle-preview" [src]="vehicleImage()" [alt]="vehicleName()" />
+    <img class="vehicle-preview" [src]="vehicleImage()" [alt]="vehicleName()" />
     }
     <div class="order-details">
         <p class="order-label">Reserved vehicle</p>
         <h2>{{ vehicleName() }}</h2>
         <p class="order-dates">
-            {{ rentPlan().startRent | date: 'mediumDate' }} - {{ rentPlan().endRent | date: 'mediumDate' }}
-            | Status: <span class="rent-plan-status">{{ rentPlan().status }}</span>
+            <span class="history-status" [class.status-pending]="rentPlan().status === 'Pending'"
+                [class.status-rented]="rentPlan().status === 'Rented'"
+                [class.status-cancelled]="rentPlan().status === 'Cancelled'"
+                [class.status-complete]="rentPlan().status === 'Complete'"
+                [class.status-unknown]="rentPlan().status === 'Unknown'">
+                Status: {{ rentPlan().status || 'Archived' }}
+            </span>
+            &nbsp;{{ rentPlan().startRent | date: 'mediumDate' }} - {{ rentPlan().endRent | date: 'mediumDate' }}
         </p>
     </div>
     <div class="order-total">

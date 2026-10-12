@@ -52,4 +52,37 @@ describe('RentPlanService', () => {
         expect(req.request.method).toBe('DELETE');
         req.flush(null);
     });
+
+    it('should POST /api/rentplan/history when addPlanToHistory is called', () => {
+        const mockPlan: RentPlan = {
+            id: 10,
+            vehicleID: 2,
+            startRent: '2026-10-01',
+            endRent: '2026-10-04',
+            daysRent: 3,
+            totalPrice: 13050,
+            customerName: 'John Doe',
+            payMode: 'Cash',
+            status: 'Cancelled',
+        };
+
+        service.addPlanToHistory(mockPlan).subscribe((res) => {
+            expect(res.status).toBe('Cancelled');
+        });
+
+        const req = httpTesting.expectOne('http://localhost:8080/api/rentplan/history');
+        expect(req.request.method).toBe('POST');
+        expect(req.request.body).toEqual(mockPlan);
+        req.flush(mockPlan);
+    });
+
+    it('should GET /api/rentplan/history?renterId=1 when getRentPlanHistory is called with renterId', () => {
+        service.getRentPlanHistory(1).subscribe((res) => {
+            expect(res.length).toBe(1);
+        });
+
+        const req = httpTesting.expectOne('http://localhost:8080/api/rentplan/history?renterId=1');
+        expect(req.request.method).toBe('GET');
+        req.flush([{ id: 10, vehicleID: 2, customerName: 'John Doe' }]);
+    });
 });

@@ -1,7 +1,7 @@
 package io.github.unawarespecs.veloce.enums;
 
 public enum VehicleFuelType {
-    Petrol,
+    Gasoline,
     Diesel,
     Electric,
     Hybrid

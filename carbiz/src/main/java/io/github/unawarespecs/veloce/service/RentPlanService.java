@@ -9,4 +9,7 @@ public interface RentPlanService {
     RentPlan updatePlan(RentPlan rp) throws Exception;
     void delete(Integer id) throws Exception;
     RentPlan[] listByRenterIdAndVehicleId(int renterID, int vehicleID);
+    RentPlan addPlanToHistory(RentPlan rp) throws Exception;
+    RentPlan[] getPlanHistory() throws Exception;
+    RentPlan[] getPlanHistoryByRenterId(Integer renterId) throws Exception;
 }

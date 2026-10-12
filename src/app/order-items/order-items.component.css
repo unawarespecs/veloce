@@ -97,3 +97,48 @@
 .rent-plan-status {
     font-weight: bold;
 }
+
+.history-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.history-status {
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--secondary);
+    color: var(--foreground);
+}
+
+.history-status.status-cancelled {
+    background: rgba(220, 32, 32, 0.15);
+    color: #ff9292;
+    border: 1px solid rgba(220, 32, 32, 0.4);
+}
+
+.history-status.status-complete {
+    background: rgba(46, 125, 50, 0.15);
+    color: #7bd69a;
+    border: 1px solid rgba(46, 125, 50, 0.4);
+}
+
+.history-status.status-pending {
+    background: rgba(208, 196, 31, 0.15);
+    color: #d0c41f;
+    border: 1px solid rgba(208, 196, 31, 0.4);
+}
+
+.history-status.status-rented {
+    background: rgba(46, 125, 50, 0.15);
+    color: #7bd69a;
+    border: 1px solid rgba(46, 125, 50, 0.4);
+}
+
+.history-status.status-unknown {
+    background: rgba(177, 170, 170, 0.15);
+    color: rgb(177, 170, 170);
+    border: 1px solid rgba(177, 170, 170, 0.4);
+}

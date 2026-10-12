@@ -30,4 +30,15 @@ export class RentPlanService {
     deleteRentPlan(id: number): Observable<void> {
         return this.http.delete<void>(`${this.API_BASE_URL}/api/rentplan/${id}`);
     }
+
+    addPlanToHistory(rentPlan: RentPlan): Observable<RentPlan> {
+        return this.http.post<RentPlan>(`${this.API_BASE_URL}/api/rentplan/history`, rentPlan);
+    }
+
+    getRentPlanHistory(renterId?: number): Observable<RentPlan[]> {
+        const url = renterId !== undefined
+            ? `${this.API_BASE_URL}/api/rentplan/history?renterId=${renterId}`
+            : `${this.API_BASE_URL}/api/rentplan/history`;
+        return this.http.get<RentPlan[]>(url);
+    }
 }

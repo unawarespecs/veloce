@@ -86,4 +86,34 @@ public class RentPlanController {
         }
         return resp;
     }
+
+    @PostMapping({"/history", "/history/"})
+    public ResponseEntity<?> addPlanToHistory(@RequestBody RentPlan rp) {
+        logger.info("POST /api/rentplan/history - adding to history: {}", rp.toString());
+        ResponseEntity<?> resp;
+        try {
+            RentPlan saved = rentPlanService.addPlanToHistory(rp);
+            resp = ResponseEntity.ok(saved);
+        } catch (Exception e) {
+            logger.error("Failed to add rent plan to history {}: {}", rp, e.getMessage());
+            resp = ResponseEntity.internalServerError().body(e.getMessage());
+        }
+        return resp;
+    }
+
+    @GetMapping({"/history", "/history/"})
+    public ResponseEntity<?> getPlanHistory(@RequestParam(required = false) final Integer renterId) {
+        logger.info("GET /api/rentplan/history - getting history for renterId={}", renterId);
+        ResponseEntity<?> resp;
+        try {
+            RentPlan[] history = renterId != null
+                    ? rentPlanService.getPlanHistoryByRenterId(renterId)
+                    : rentPlanService.getPlanHistory();
+            resp = ResponseEntity.ok(history);
+        } catch (Exception e) {
+            logger.error("Failed to get rent plan history: {}", e.getMessage());
+            resp = ResponseEntity.internalServerError().body(e.getMessage());
+        }
+        return resp;
+    }
 }

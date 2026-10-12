@@ -47,7 +47,8 @@ This document describes the backend endpoints exposed by the Spring Boot applica
     "daysRent": 5,
     "totalPrice": 2500.0,
     "customerName": "Jane Doe",
-    "payMode": "Cash"
+    "payMode": "Cash",
+    "status": "Rented"
 }
 ```
 
@@ -59,6 +60,11 @@ Allowed payment values:
 - `GCash`
 - `Maya`
 - `QRPH`
+
+Allowed status for rent lifecycle:
+
+- `status`: `Pending`, `Rented`, `Complete`, `Cancelled`, `Unknown`
+
 
 ### Renter
 
@@ -88,7 +94,7 @@ Allowed payment values:
     "dailyRate": 1800.0,
     "seats": 5,
     "transmission": "Automatic",
-    "fuel": "Petrol",
+    "fuel": "Gasoline",
     "imagePath": "/images/toyota-vios.jpg",
     "tag": "Popular"
 }
@@ -98,7 +104,7 @@ Vehicle enumerations:
 
 - `category`: `Sedan`, `Van`, `SUV`, `Truck`, `Sports`, `Luxury`
 - `transmission`: `Automatic`, `Manual`
-- `fuel`: `Petrol`, `Diesel`, `Electric`, `Hybrid`
+- `fuel`: `Gasoline`, `Diesel`, `Electric`, `Hybrid`
 
 > Note: the `price` field is considered internal business data and is intentionally not meant for display on the frontend.
 
@@ -137,10 +143,6 @@ GET /api/rentplan
 ]
 ```
 
-Rent plan enumerations:
-
-- `status`: `Pending`, `Rented`, `Complete`, `Cancelled`, `Unknown`
-
 ### GET /api/rentplan/{id}
 
 Returns a single rent plan by ID.
@@ -163,7 +165,8 @@ GET /api/rentplan/1
     "daysRent": 5,
     "totalPrice": 2500.0,
     "customerName": "Jane Doe",
-    "payMode": "Cash"
+    "payMode": "Cash",
+    "status": "Rented"
 }
 ```
 
@@ -182,7 +185,8 @@ Creates a new rent plan.
     "daysRent": 5,
     "totalPrice": 2500.0,
     "customerName": "Jane Doe",
-    "payMode": "Cash"
+    "payMode": "Cash",
+    "status": "Pending"
 }
 ```
 
@@ -206,7 +210,8 @@ Updates an existing rent plan.
     "daysRent": 7,
     "totalPrice": 3500.0,
     "customerName": "Jane Doe",
-    "payMode": "Credit"
+    "payMode": "Credit",
+    "status": "Completed"
 }
 ```
 
@@ -226,6 +231,48 @@ DELETE /api/rentplan/1
 
 - `200 OK`
 - body: `null`
+
+### POST /api/rentplan/history
+
+Adds a rent plan snapshot to rental history. The history record stores the submitted plan details, including its original rent plan ID when provided.
+
+#### Request body
+
+Send a `RentPlan` object. For example:
+
+```json
+{
+    "id": 1,
+    "renterID": 10,
+    "vehicleID": 3,
+    "startRent": "2026-09-25T00:00:00.000Z",
+    "endRent": "2026-09-30T00:00:00.000Z",
+    "daysRent": 5,
+    "totalPrice": 2500.0,
+    "customerName": "Jane Doe",
+    "payMode": "Cash",
+    "status": "Complete"
+}
+```
+
+#### Response
+
+Returns the saved history entry as a `RentPlan` object. Its `id` is the submitted original rent plan ID when provided; otherwise, it is the history record ID.
+
+### GET /api/rentplan/history
+
+Returns all rental history entries. Optionally filter the results to one renter with the `renterId` query parameter.
+
+#### Examples
+
+```http
+GET /api/rentplan/history
+GET /api/rentplan/history?renterId=10
+```
+
+#### Response
+
+Returns an array of `RentPlan` objects, including an empty array if there are no matching entries. Each object contains the history snapshot fields: `id`, `renterID`, `vehicleID`, `startRent`, `endRent`, `daysRent`, `totalPrice`, `customerName`, `payMode`, and `status`.
 
 ---
 
@@ -374,7 +421,7 @@ GET /api/vehicle
         "dailyRate": 1800.0,
         "seats": 5,
         "transmission": "Automatic",
-        "fuel": "Petrol",
+        "fuel": "Gasoline",
         "imagePath": "/images/toyota-vios.jpg",
         "tag": "Popular"
     }
@@ -402,7 +449,7 @@ Creates a new vehicle.
     "dailyRate": 1800.0,
     "seats": 5,
     "transmission": "Automatic",
-    "fuel": "Petrol",
+    "fuel": "Gasoline",
     "imagePath": "/images/toyota-vios.jpg",
     "tag": "Popular"
 }

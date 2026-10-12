@@ -1,1 +1,60 @@
-<p>order-history works!</p>
+<section class="order-history-section" aria-labelledby="history-heading">
+    <div class="history-header">
+        <p class="history-eyebrow">Past Reservations</p>
+        <h2 id="history-heading">Rental History</h2>
+    </div>
+
+    @if (isLoading()) {
+    <div class="history-empty" role="status">
+        <p>Loading your rental history...</p>
+    </div>
+    } @else if (history().length === 0) {
+    <div class="history-empty">
+        <p>No past rental history found.</p>
+    </div>
+    } @else {
+    <div class="history-list">
+        @for (item of history(); track item.plan.id ?? $index) {
+        <article class="history-item">
+            @if (item.vehicleImage) {
+            <img class="vehicle-preview" [src]="item.vehicleImage" [alt]="item.vehicleName" />
+            } @else {
+            <div class="vehicle-placeholder" aria-hidden="true">
+                <span>Vehicle</span>
+            </div>
+            }
+
+            <div class="history-details">
+                <p class="history-item-label">Past reservation</p>
+                <h3>{{ item.vehicleName }}</h3>
+                <p class="history-dates">
+                    {{ item.plan.startRent | date: 'mediumDate' }} - {{ item.plan.endRent | date: 'mediumDate' }}
+                    @if (item.plan.daysRent) {
+                    <span> | {{ item.plan.daysRent }} day{{ item.plan.daysRent > 1 ? 's' : '' }}</span>
+                    }
+                </p>
+                <div class="history-meta">
+                    <span class="history-status"
+                    [class.status-pending]="item.plan.status === 'Pending'"
+                    [class.status-rented]="item.plan.status === 'Rented'"
+                    [class.status-cancelled]="item.plan.status === 'Cancelled'"
+                    [class.status-complete]="item.plan.status === 'Complete'"
+                    [class.status-unknown]="item.plan.status === 'Unknown'"
+                    >
+                        Status: {{ item.plan.status || 'Archived' }}
+                    </span>
+                    @if (item.plan.payMode) {
+                    <span class="history-paymode">Payment: {{ item.plan.payMode }}</span>
+                    }
+                </div>
+            </div>
+
+            <div class="history-total">
+                <span>Total price</span>
+                <strong>{{ item.plan.totalPrice | currency: 'PHP' : 'symbol' : '1.2-2' }}</strong>
+            </div>
+        </article>
+        }
+    </div>
+    }
+</section>

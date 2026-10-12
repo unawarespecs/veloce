@@ -1,6 +1,7 @@
 package io.github.unawarespecs.veloce.serviceimpl;
 
 import io.github.unawarespecs.veloce.entity.RentPlanData;
+import io.github.unawarespecs.veloce.entity.RentPlanHistoryData;
 import io.github.unawarespecs.veloce.model.RentPlan;
 import io.github.unawarespecs.veloce.repository.RentPlanDataRepository;
 import io.github.unawarespecs.veloce.repository.RentPlanHistoryDataRepository;
@@ -130,15 +131,60 @@ public class RentPlanSrvImpl implements RentPlanService {
     }
 
     @Override
+    @Deprecated
     public RentPlan[] listByRenterIdAndVehicleId(int renterID, int vehicleID) {
-        List<RentPlanData> rentPlanData = new ArrayList<>();
-        List<RentPlan> rentPlans = new ArrayList<>();
-//        rpdr.findAllByRenterIDAndVehicleID()
         return new RentPlan[0];
     }
 
-    // TODO: add a separate order history in backend
+    @Override
     public RentPlan addPlanToHistory(RentPlan rp) {
-        return new RentPlan();
+        logger.info("Adding plan to history: {}", rp);
+        RentPlanHistoryData historyData = new RentPlanHistoryData();
+        historyData.setOriginalRentPlanId(rp.getId());
+        historyData.setRenterID(rp.getRenterID());
+        historyData.setVehicleID(rp.getVehicleID());
+        historyData.setStartRent(rp.getStartRent());
+        historyData.setEndRent(rp.getEndRent());
+        historyData.setDaysRent(rp.getDaysRent());
+        historyData.setTotalPrice(rp.getTotalPrice());
+        historyData.setCustomerName(rp.getCustomerName());
+        historyData.setPayMode(rp.getPayMode());
+        historyData.setStatus(rp.getStatus());
+        RentPlanHistoryData saved = rentPlanHistoryDataRepository.save(historyData);
+        logger.info("Saved plan to history: {}", saved);
+        return transformHistoryDataToRentPlan(saved);
+    }
+
+    @Override
+    public RentPlan[] getPlanHistory() {
+        List<RentPlan> historyPlans = new ArrayList<>();
+        rentPlanHistoryDataRepository.findAll().forEach(datum -> {
+            historyPlans.add(transformHistoryDataToRentPlan(datum));
+        });
+        return historyPlans.toArray(new RentPlan[0]);
+    }
+
+    @Override
+    public RentPlan[] getPlanHistoryByRenterId(Integer renterId) {
+        List<RentPlan> historyPlans = new ArrayList<>();
+        rentPlanHistoryDataRepository.findAllByRenterID(renterId).forEach(datum -> {
+            historyPlans.add(transformHistoryDataToRentPlan(datum));
+        });
+        return historyPlans.toArray(new RentPlan[0]);
+    }
+
+    private RentPlan transformHistoryDataToRentPlan(RentPlanHistoryData datum) {
+        RentPlan plan = new RentPlan();
+        plan.setId(datum.getOriginalRentPlanId() != null ? datum.getOriginalRentPlanId() : datum.getId());
+        plan.setRenterID(datum.getRenterID());
+        plan.setVehicleID(datum.getVehicleID());
+        plan.setStartRent(datum.getStartRent());
+        plan.setEndRent(datum.getEndRent());
+        plan.setDaysRent(datum.getDaysRent());
+        plan.setTotalPrice(datum.getTotalPrice());
+        plan.setCustomerName(datum.getCustomerName());
+        plan.setPayMode(datum.getPayMode());
+        plan.setStatus(datum.getStatus());
+        return plan;
     }
 }
