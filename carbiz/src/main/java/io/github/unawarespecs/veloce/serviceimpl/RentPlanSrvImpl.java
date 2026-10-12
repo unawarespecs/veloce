@@ -3,6 +3,7 @@ package io.github.unawarespecs.veloce.serviceimpl;
 import io.github.unawarespecs.veloce.entity.RentPlanData;
 import io.github.unawarespecs.veloce.model.RentPlan;
 import io.github.unawarespecs.veloce.repository.RentPlanDataRepository;
+import io.github.unawarespecs.veloce.repository.RentPlanHistoryDataRepository;
 import io.github.unawarespecs.veloce.service.RentPlanService;
 import io.github.unawarespecs.veloce.transform.TransformRentPlanService;
 import org.jspecify.annotations.NonNull;
@@ -19,10 +20,14 @@ public class RentPlanSrvImpl implements RentPlanService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     RentPlanDataRepository rentPlanDataRepository;
+    RentPlanHistoryDataRepository rentPlanHistoryDataRepository;
     TransformRentPlanService transformRentPlanService;
 
-    public RentPlanSrvImpl(RentPlanDataRepository rpdr, TransformRentPlanService trps) {
+    public RentPlanSrvImpl(RentPlanDataRepository rpdr,
+        RentPlanHistoryDataRepository rphdr,
+         TransformRentPlanService trps) {
         this.rentPlanDataRepository = rpdr;
+        this.rentPlanHistoryDataRepository = rphdr;
         this.transformRentPlanService = trps;
     }
 
@@ -130,5 +135,10 @@ public class RentPlanSrvImpl implements RentPlanService {
         List<RentPlan> rentPlans = new ArrayList<>();
 //        rpdr.findAllByRenterIDAndVehicleID()
         return new RentPlan[0];
+    }
+
+    // TODO: add a separate order history in backend
+    public RentPlan addPlanToHistory(RentPlan rp) {
+        return new RentPlan();
     }
 }

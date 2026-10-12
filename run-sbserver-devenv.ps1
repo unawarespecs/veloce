@@ -3,4 +3,7 @@ $env:DB_PASSWORD = (Get-Content .env.development |
 
 if ($env:DB_PASSWORD) { "DB_PASSWORD is set" }
 
+# rebuild project first before running
+.\mvnw.cmd clean compile install
+
 .\mvnw.cmd -pl sbrentms spring-boot:run

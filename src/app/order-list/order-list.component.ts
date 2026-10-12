@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { OrderItems } from '../order-items/order-items.component';
+import { OrderHistory } from '../order-history/order-history.component';
 import { RentPlan } from '../model/rent-plan';
 import { RentPlanService } from '../service/rent-plan.service';
 import { RenterService } from '../service/renter.service';
@@ -9,7 +10,7 @@ import { Footer } from '../footer/footer.component';
 
 @Component({
     selector: 'app-order-list',
-    imports: [OrderItems, Header, Footer],
+    imports: [OrderItems, OrderHistory, Header, Footer],
     templateUrl: './order-list.component.html',
     styleUrl: './order-list.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
