@@ -30,6 +30,6 @@
     "prettier": "3.9.8",
     "prettier-plugin-java": "2.10.4",
     "typescript": "~6.0.3",
-    "vitest": "^4.0.8"
+    "vitest": "^4.1.12"
   }
 }
